@@ -3,7 +3,14 @@ const container = document.getElementById('container');
 container.addEventListener('wheel', (e) => {
   e.preventDefault();
 
-  // 마우스 휠 세로(deltaY) 움직임을 가로 스크롤에 적용
-  // 적당한 속도 조절 위해 2 곱하기 (필요시 조절)
-  container.scrollLeft += e.deltaY * 2;
+  // deltaMode에 따라 보정
+  let scrollAmount = e.deltaY;
+
+  if (e.deltaMode === 1) { // 라인 단위
+    scrollAmount *= 16; // 대략 한 라인당 16px
+  } else if (e.deltaMode === 2) { // 페이지 단위
+    scrollAmount *= container.clientHeight;
+  }
+
+  container.scrollLeft += scrollAmount * 1.5; // 속도 조절 가능
 }, { passive: false });
