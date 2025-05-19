@@ -11,8 +11,12 @@
     <img src="img/blue.png" class="fade-img img2" />
     <img src="img/bblue.png" class="fade-img img3" />
   </div>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="project.js">
+   $('#container').on('wheel', function(e){
+   e.preventDefault();
+   this.scrollLeft += e.originalEvent.deltaY * 2;
+    });
   </script>
 </body>
 </html>
