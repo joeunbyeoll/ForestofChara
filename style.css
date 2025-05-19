@@ -1,0 +1,43 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* 세로 스크롤 제거 */
+}
+
+.image-slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  cursor: grab;
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE, Edge */
+}
+
+.image-slider::-webkit-scrollbar {
+  display: none;                 /* Chrome, Safari */
+}
+
+.fade-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  opacity: 0;
+  animation: fadeAnimation 9s infinite;
+}
+
+.img1 { animation-delay: 0s; }
+.img2 { animation-delay: 3s; }
+.img3 { animation-delay: 6s; }
+
+@keyframes fadeAnimation {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
