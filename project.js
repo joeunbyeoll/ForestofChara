@@ -11,6 +11,3 @@ container.addEventListener('wheel', (e) => {
   } else if (e.deltaMode === 2) { // 페이지 단위
     scrollAmount *= container.clientHeight;
   }
-
-  container.scrollLeft += scrollAmount * 1.5; // 속도 조절 가능
-}, { passive: false });
