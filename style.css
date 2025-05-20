@@ -41,3 +41,7 @@ html, body {
   80% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+* {
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
