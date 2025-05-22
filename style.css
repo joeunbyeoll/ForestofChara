@@ -1,13 +1,17 @@
+.@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');/* regular-400, medium-500, semibold-600, bold-700 */ 
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100vh;
   overflow: hidden; /* 세로 스크롤 제거 */
+  font-family: 'Garcog', sans-serif;
 }
+
 
 .image-slider {
   position: relative;
-  width: 100vw;
+  width: 200vw;
   height: 100vh;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -19,7 +23,33 @@ html, body {
 
 .image-slider::-webkit-scrollbar {
   display: none;                 /* Chrome, Safari */
+  position: relative;
+  width: 300vw;  /* 예시로 크게 */
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
+
+.slide {
+  flex: 0 0 100vw;
+  height: 100vh;
+  position: relative;
+  scroll-snap-align: center;
+}
+
+.slide-text {
+  font-size: 40px;
+  font-family: 'GarcogRegular', sans-serif;
+  font-weight: bold;
+  margin: 50px;
+}
+
+
+.scroll-dummy {
+  width: 585vw; /* 이미지 개수에 맞게 */
+  height: 100vh;
+}
+
 
 .fade-img {
   position: absolute;
@@ -28,20 +58,65 @@ html, body {
   height: 100vh;
   width: auto;
   opacity: 0;
-  animation: fadeAnimation 9s infinite;
+  animation: fadeAnimation 21s infinite;
+  animation-timing-function: ease-in-out;
 }
 
-.img1 { animation-delay: 0s; }
+.img1 {
+  opacity: 1;              /* ✅ 처음 로딩 시 바로 보이게 */
+  animation-delay: 0s;
+}
 .img2 { animation-delay: 3s; }
 .img3 { animation-delay: 6s; }
+.img4 { animation-delay: 9s; }
+.img5 { animation-delay: 12s; }
+.img6 { animation-delay: 15s; }
+.img7 { animation-delay: 18s; }
 
 @keyframes fadeAnimation {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
 * {
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
 }
+
+
+.typing-container {
+  font-size: 35px;
+  font-family: 'Garcog', sans-serif;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  white-space: nowrap; /* 한줄로 유지 */
+  overflow: hidden; /* 넘치는 글자는 숨김 */
+  width: 300px; /* 원하는 크기로 조절 */
+  background: none;
+  padding: 0;
+  border:none;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+#cursor {
+  display: inline-block;
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
