@@ -4,24 +4,41 @@
   <meta charset="UTF-8" />
   <title>Forest of Chara</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.cdnfonts.com/css/garcog" rel="stylesheet">
+
   <link rel="icon" href="img/cursorr.png" type="image/png">
 </head>
 <body>
   <div class="image-slider"id="container">
-    <img src="img/coblue.png" class="fade-img img1" />
-    <img src="img/blue.png" class="fade-img img2" />
-    <img src="img/bblue.png" class="fade-img img3" />
+    <div class="scroll-dummy"></div>
+    <img src="img/ooo.whblue.png" class="fade-img img1" />
+    <img src="img/ooo.seru.png" class="fade-img img2" />
+    <img src="img/ooo.cobalt.png" class="fade-img img3" />
+    <img src="img/ooo.ultra.png" class="fade-img img4" />
+    <img src="img/ooo.vioultra.png" class="fade-img img5" />
+    <img src="img/ooo.mint.png" class="fade-img img6" />
+      <section class="slide">
+        <h1 class="slide-text">Hello</h1>
+      </section>
+      <section class="slide">
+        <h1 class="slide-text">Do you know</h1>
+      </section>
   </div>
+  <div style="font-family: 'Garcog', sans-serif;">
+   Hello
+  </div>
+
+
+<div class="typing-container">
+  <span id="text"></span><span id="cursor"></span>
+</div>
+
   <a href="https://joeunbyeoll.github.io/ForestofChara/">
   <img src="img/cursorr.png" alt="Forest of Chara 아이콘" style="width:16px; height:16px; vertical-align:middle; margin-right:4px;">
   </a>
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="project.js">
-   $('#container').on('wheel', function(e){
-   e.preventDefault();
-   this.scrollLeft += e.originalEvent.deltaY * 2;
-    });
   </script>
 </body>
 </html>
