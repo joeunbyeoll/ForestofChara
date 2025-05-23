@@ -26,7 +26,7 @@ html, body {
 
 .image-text, .image-text2,.image-text3,.image-text4 {
   position: absolute;
-  color: black;
+  color: white;
   font-size: 30px;
   font-family: 'Garcog', sans-serif;
   pointer-events: none;
