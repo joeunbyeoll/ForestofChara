@@ -98,9 +98,8 @@ html, body {
   left: 0;
   height: 100vh;
   width: auto;
-  opacity: 1;
+  opacity: 0;
   animation: fadeAnimation 21s infinite;
-  animation: none; 
   z-index: 1; /* ✅ 이미지는 낮은 레이어 */
 }
 
