@@ -84,7 +84,7 @@ html, body {
 }
 
 .music:hover {
-  cursor: none;
+  cursor: none !important;
 }
 
 .scroll-dummy {
@@ -98,11 +98,13 @@ html, body {
   left: 0;
   height: 100vh;
   width: auto;
-  opacity: 0;
+  opacity: 1;
   animation: fadeAnimation 21s infinite;
-  animation-timing-function: ease-in-out;
+  animation: none; 
   z-index: 1; /* ✅ 이미지는 낮은 레이어 */
 }
+
+
 
 .img1 { opacity: 1; animation-delay: 0s; }
 .img2 { animation-delay: 3s; }
