@@ -9,32 +9,52 @@
   <link rel="icon" href="img/cursorr.png" type="image/png">
 </head>
 <body>
-  <div class="image-slider"id="container">
-    <div class="scroll-dummy"></div>
-    <img src="img/ooo.whblue.png" class="fade-img img1" />
-    <img src="img/ooo.seru.png" class="fade-img img2" />
-    <img src="img/ooo.cobalt.png" class="fade-img img3" />
-    <img src="img/ooo.ultra.png" class="fade-img img4" />
-    <img src="img/ooo.vioultra.png" class="fade-img img5" />
-    <img src="img/ooo.mint.png" class="fade-img img6" />
-      <section class="slide">
-        <h1 class="slide-text">Hello</h1>
-      </section>
-      <section class="slide">
-        <h1 class="slide-text">Do you know</h1>
-      </section>
+  <div class="image-slider" id="container">
+  <div class="scroll-dummy"></div>
+  <img src="img/ooo.whblue.png" class="fade-img img1" />
+  <img src="img/ooo.seru.png" class="fade-img img2" />
+  <img src="img/ooo.cobalt.png" class="fade-img img3" />
+  <img src="img/ooo.ultra.png" class="fade-img img4" />
+  <img src="img/ooo.vioultra.png" class="fade-img img5" />
+  <img src="img/ooo.mint.png" class="fade-img img6" />
+  
+  <div class="image-text" id="text1"></div>
+  <div class="image-text2" id="text2"></div> 
+  <div class="image-text3" id="text3"></div>
+  <div class="image-text4" id="text4"></div><!-- container 안에 넣기 -->
   </div>
-  <div style="font-family: 'Garcog', sans-serif;">
-   Hello
-  </div>
+  <div class="glow-wrapper">
+  <img src="img/cursorr.png" class="music" id="videoTrigger" style="width:50px; height:50px; cursor:pointer;" />
+</div>
+
+<!-- 흰 배경 이미지 박스 + 유튜브 iframe -->
+<div id="videoBox" style="
+    display:none;
+    position: fixed;
+    top: 80px;
+    left: 80px;
+    width: 560px;
+    height: 315px;
+    background: white url('img/doma.png') no-repeat center/cover;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 10000;
+    ">
+  <iframe id="youtubePlayer" width="560" height="315" 
+    src="https://www.youtube.com/embed/8YhP2bxRLNI?autoplay=1"
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+
 
 
 <div class="typing-container">
-  <span id="text"></span><span id="cursor"></span>
+  <span id="text"></span>
 </div>
 
   <a href="https://joeunbyeoll.github.io/ForestofChara/">
-  <img src="img/cursorr.png" alt="Forest of Chara 아이콘" style="width:16px; height:16px; vertical-align:middle; margin-right:4px;">
+  <img src="img/cursorr.png" alt="Forest of Chara 아이콘">
   </a>
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
