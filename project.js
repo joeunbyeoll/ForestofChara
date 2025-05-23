@@ -1,34 +1,12 @@
-// 1. 가로 스크롤 컨테이너
+// 가로 스크롤 설정
 const container = document.getElementById('container');
-const textEl = document.getElementById('text');
 
-const fullText = "Hello This is Forest of Chara";
-let currentIndex = 0;
-let isTyping = false;
-const triggerPoint = 200; // 스크롤 위치(px)
-const typingSpeed = 100;
-
-// 2. 타자기 효과 함수
-function typeNextChar() {
-  if (currentIndex < fullText.length) {
-    textEl.textContent += fullText.charAt(currentIndex);
-    currentIndex++;
-    setTimeout(typeNextChar, typingSpeed);
-  } else {
-    isTyping = false;
-  }
-}
-
-// 3. 휠을 이용한 가로 스크롤
 container.addEventListener('wheel', (e) => {
-  // 기본 휠 스크롤 막음
   e.preventDefault();
 
-  // 스크롤 가능할 만큼 요소가 충분히 길어야 함
   const maxScrollLeft = container.scrollWidth - container.clientWidth;
-  if (maxScrollLeft <= 0) return; // 스크롤 거리 없으면 return
+  if (maxScrollLeft <= 0) return;
 
-  // 휠 방향에 따라 가로 이동
   let scrollAmount = e.deltaY;
   if (e.deltaMode === 1) scrollAmount *= 16;
   else if (e.deltaMode === 2) scrollAmount *= container.clientHeight;
@@ -36,10 +14,92 @@ container.addEventListener('wheel', (e) => {
   container.scrollLeft += scrollAmount;
 }, { passive: false });
 
-// 4. 스크롤 위치에 따라 타자기 효과 한 번만 실행
-container.addEventListener('scroll', () => {
-  if (container.scrollLeft > triggerPoint && !isTyping && currentIndex === 0) {
-    isTyping = true;
-    typeNextChar();
+// 텍스트 요소
+const text1El = document.getElementById('text1');
+const text2El = document.getElementById('text2');
+const text3El = document.getElementById('text3');
+const text4El = document.getElementById('text4');
+
+// 텍스트 내용
+const text1 = "Hello.\nThis is the Forest of Chara.\nA quiet corner somewhere on Earth. In this forest, many lizards live their lives.\n \nThey often resort to a behavior called 'Autotomy' to survive.";
+const text2 = "Have you ever heard of 'Autotomy'? \n'Autotomy' is the behavior in which a lizard, when threatened, voluntarily detaches a part of its body to escape. They bend their bodies and renew themselves to keep living.";
+const text3 = "There are times in life when we all want to run away — because we live an endlessly busy life.\n \nHow did you end up here? And do you feel like running away now?";
+const text4 = "Here in this place, your autotomy is not a weakness, but the courage to move forward. Feel free to lay down your worries here and let them go.";
+
+// 인덱스 객체로 관리 (타이핑 진행 상태 추적)
+const index1 = { value: 0 };
+const index2 = { value: 0 };
+const index3 = { value: 0 };
+const index4 = { value: 0 };
+
+let text1Typing = false, text2Typing = false, text3Typing = false, text4Typing = false;
+
+function typeText(targetEl, text, indexRef, callback) {
+  if (indexRef.value < text.length) {
+    const char = text.charAt(indexRef.value);
+    targetEl.innerHTML += char === '\n' ? '<br>' : char;
+    indexRef.value++;
+    setTimeout(() => typeText(targetEl, text, indexRef, callback), 110);
+  } else if (callback) {
+    callback();
   }
+}
+
+// 텍스트 트리거 위치 (스크롤 좌표 기준)
+const text1TriggerPoint = 280;
+const text2TriggerPoint = 1800;
+const text3TriggerPoint = 3500;
+const text4TriggerPoint = 4700;
+
+container.addEventListener('scroll', () => {
+  const scrollX = container.scrollLeft;
+
+  if (scrollX > text1TriggerPoint && !text1Typing && index1.value === 0) {
+    text1Typing = true;
+    typeText(text1El, text1, index1);
+  }
+
+  if (scrollX > text2TriggerPoint && !text2Typing && index2.value === 0) {
+    text2Typing = true;
+    typeText(text2El, text2, index2);
+  }
+
+  if (scrollX > text3TriggerPoint && !text3Typing && index3.value === 0) {
+    text3Typing = true;
+    typeText(text3El, text3, index3);
+  }
+
+  if (scrollX > text4TriggerPoint && !text4Typing && index4.value === 0) {
+    text4Typing = true;
+    typeText(text4El, text4, index4);
+  }
+});
+
+// 유튜브 오버레이 재생 관련
+const trigger = document.getElementById("videoTrigger");
+const overlay = document.getElementById("youtubeOverlay");
+const closeBtn = document.getElementById("closeOverlay");
+const player = document.getElementById("youtubePlayer");
+
+trigger.addEventListener("click", () => {
+  overlay.style.display = "flex";
+  if (!player.src.includes("autoplay=1")) {
+    player.src += (player.src.includes("?") ? "&" : "?") + "autoplay=1";
+  }
+});
+
+closeBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+  player.src = player.src.replace("&autoplay=1", "").replace("?autoplay=1", "");
+});
+
+// 커서 숨기기 효과 (선택사항)
+const musicEl = document.querySelector('.music');
+
+musicEl.addEventListener('mouseenter', () => {
+  document.body.style.cursor = 'none';
+});
+
+musicEl.addEventListener('mouseleave', () => {
+  document.body.style.cursor = '';
 });
