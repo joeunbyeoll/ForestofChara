@@ -26,7 +26,7 @@ const text2 = "Have you ever heard of 'Autotomy'? \n'Autotomy' is the behavior i
 const text3 = "There are times in life when we all want to run away — because we live an endlessly busy life.\n \nHow did you end up here? And do you feel like running away now?";
 const text4 = "Here in this place, your autotomy is not a weakness, but the courage to move forward. Feel free to lay down your worries here and let them go.";
 
-// 인덱스 객체로 관리 (타이핑 진행 상태 추적)
+// 인덱스 객체로 관리
 const index1 = { value: 0 };
 const index2 = { value: 0 };
 const index3 = { value: 0 };
@@ -45,7 +45,7 @@ function typeText(targetEl, text, indexRef, callback) {
   }
 }
 
-// 텍스트 트리거 위치 (스크롤 좌표 기준)
+// 텍스트 트리거 위치
 const text1TriggerPoint = 280;
 const text2TriggerPoint = 1800;
 const text3TriggerPoint = 3500;
@@ -75,25 +75,39 @@ container.addEventListener('scroll', () => {
   }
 });
 
-// 유튜브 오버레이 재생 관련
-const trigger = document.getElementById("videoTrigger");
-const overlay = document.getElementById("youtubeOverlay");
-const closeBtn = document.getElementById("closeOverlay");
-const player = document.getElementById("youtubePlayer");
+// ✅ 오버레이 없이 PNG 이미지 토글 표시
+const trigger = document.getElementById("videoTrigger"); // .music div
+const image = document.createElement("img");
+
+image.src = "img/domamusic.png"; // PNG 이미지 경로
+image.id = "popupImage";
+image.style.position = "fixed";
+image.style.top = "100px";
+image.style.left = "100px";
+image.style.zIndex = "9999";
+image.style.display = "none";
+image.style.pointerEvents = "auto";
+image.style.cursor = "pointer";
+image.style.maxWidth = "400px"; // 크기 조절 가능
+image.style.height = "auto";
+image.style.userSelect = "none";
+
+// 이미지 요소를 body에 추가
+document.body.appendChild(image);
+
+let isImageVisible = false;
 
 trigger.addEventListener("click", () => {
-  overlay.style.display = "flex";
-  if (!player.src.includes("autoplay=1")) {
-    player.src += (player.src.includes("?") ? "&" : "?") + "autoplay=1";
-  }
+  isImageVisible = !isImageVisible;
+  image.style.display = isImageVisible ? "block" : "none";
 });
 
-closeBtn.addEventListener("click", () => {
-  overlay.style.display = "none";
-  player.src = player.src.replace("&autoplay=1", "").replace("?autoplay=1", "");
+image.addEventListener("click", () => {
+  image.style.display = "none";
+  isImageVisible = false;
 });
 
-// 커서 숨기기 효과 (선택사항)
+// 커서 숨기기
 const musicEl = document.querySelector('.music');
 
 musicEl.addEventListener('mouseenter', () => {
