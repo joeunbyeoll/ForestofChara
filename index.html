@@ -5,9 +5,6 @@
   <title>Forest of Chara</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.cdnfonts.com/css/garcog" rel="stylesheet">
-  <div id="popup" class="popup-hidden">
-  
-
   <link rel="icon" href="img/cursorr.png" type="image/png">
 </head>
 <body>
@@ -29,26 +26,16 @@
   <img src="img/cursorr.png" class="music" id="videoTrigger" style="width:50px; height:50px; cursor:pointer;" />
 </div>
 
-<!-- 흰 배경 이미지 박스 + 유튜브 iframe -->
-<div id="videoBox" style="
-    display:none;
-    position: fixed;
-    top: 80px;
-    left: 80px;
-    width: 560px;
-    height: 315px;
-    background: white url('img/domamusic2.png') no-repeat center/cover;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    cursor: pointer;
-    z-index: 10000;
-    ">
-  <iframe id="youtubePlayer" width="560" height="315" 
-    src="https://www.youtube.com/embed/8YhP2bxRLNI?autoplay=1"
-    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
 
-
+<iframe 
+    id="youtubePopup"
+    width="300" 
+    height="300" 
+    src="https://www.youtube.com/embed/8YhP2bxRLNI?autoplay=1&controls=0&rel=0&modestbranding=1"
+    title="YouTube video player" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
 
 
 <div class="typing-container">
