@@ -257,6 +257,7 @@ html, body {
 }
 
 iframe {
+  display: none;
   position: fixed;
   top: 165px;
   left: 60px;
