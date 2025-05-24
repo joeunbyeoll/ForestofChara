@@ -79,11 +79,11 @@ container.addEventListener('scroll', () => {
 const trigger = document.getElementById("videoTrigger"); // .music div
 const image = document.createElement("img");
 
-image.src = "img/domamusic.png"; // PNG 이미지 경로
+image.src = "img/domamusic2.png"; // PNG 이미지 경로
 image.id = "popupImage";
 image.style.position = "fixed";
-image.style.top = "100px";
-image.style.left = "100px";
+image.style.top = "20px";
+image.style.left = "20px";
 image.style.zIndex = "9999";
 image.style.display = "none";
 image.style.pointerEvents = "auto";
