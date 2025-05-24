@@ -78,6 +78,7 @@ container.addEventListener('scroll', () => {
 // ✅ 오버레이 없이 PNG 이미지 토글 표시
 const trigger = document.getElementById("videoTrigger"); // .music div
 const image = document.createElement("img");
+const youtube = document.getElementById("youtubePopup");
 
 image.src = "img/domamusic2.png"; // PNG 이미지 경로
 image.id = "popupImage";
@@ -100,10 +101,12 @@ let isImageVisible = false;
 trigger.addEventListener("click", () => {
   isImageVisible = !isImageVisible;
   image.style.display = isImageVisible ? "block" : "none";
+  youtube.style.display = isImageVisible ? "block" : "none";  // iframe 토글 추가
 });
 
 image.addEventListener("click", () => {
   image.style.display = "none";
+  youtube.style.display = "none";
   isImageVisible = false;
 });
 
