@@ -140,6 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   enterBtn.addEventListener('click', () => {
     document.getElementById('loadingOverlay').style.display = 'none';
+     runIntroGrid();
 
     // 알파벳 텍스트 애니메이션
     const text = "entering to the forest of Chara";
@@ -161,4 +162,65 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 enterBtn.classList.add('show');
+
+function runIntroGrid() {
+  const container = document.getElementById('introGridContainer');
+  container.innerHTML = ''; // 초기화
+
+  const characters = "Hello, this is the Forest of Chara — a quiet corner somewhere on Earth.";
+  const grid = document.createElement('div');
+  grid.classList.add('grid');
+  container.appendChild(grid);
+
+  const cells = [];
+  const triggerIndexes = [10, 25, 45]; // 클릭해야 할 셀 인덱스들
+  const triggerCells = [];
+
+  for (let i = 0; i < characters.length; i++) {
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    grid.appendChild(cell);
+    cells.push(cell);
+
+    if (triggerIndexes.includes(i)) {
+      cell.classList.add('trigger');
+      triggerCells.push(cell);
+    }
+  }
+
+  let currentTrigger = 0;
+
+  function activateTrigger(index) {
+    const cell = triggerCells[index];
+    if (!cell) return;
+
+    cell.classList.add('blinking');
+    cell.addEventListener('click', function handleClick() {
+      if (cell.classList.contains('clicked')) return;
+      cell.classList.remove('blinking');
+      cell.classList.add('clicked');
+      cell.removeEventListener('click', handleClick);
+
+      if (index + 1 < triggerCells.length) {
+        activateTrigger(index + 1);
+      } else {
+        revealAll();
+      }
+    });
+  }
+
+  function revealAll() {
+    for (let i = 0; i < cells.length; i++) {
+      setTimeout(() => {
+        cells[i].textContent = characters[i];
+        cells[i].classList.add('revealed');
+      }, i * 100);
+    }
+
+    // 마지막 셀까지 출력 완료 후에도 남겨두기
+  }
+
+  activateTrigger(currentTrigger);
+}
+
 
