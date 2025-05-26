@@ -14,11 +14,20 @@ container.addEventListener('wheel', (e) => {
   container.scrollLeft += scrollAmount;
 }, { passive: false });
 
-// 🔵 로딩 화면 및 입장 버튼
+// 로딩 및 입장 버튼 관련
 window.addEventListener('DOMContentLoaded', () => {
   const loadingText = document.getElementById('loadingText');
   const enterBtn = document.getElementById('enterBtn');
   let percent = 0;
+
+  if (!loadingText || !enterBtn) {
+    console.error('loadingText 또는 enterBtn 요소를 찾을 수 없습니다!');
+    return;
+  }
+
+  enterBtn.classList.add('hidden');
+  enterBtn.style.opacity = 0;
+  enterBtn.style.pointerEvents = 'none';
 
   const loadingInterval = setInterval(() => {
     percent++;
@@ -28,41 +37,44 @@ window.addEventListener('DOMContentLoaded', () => {
       clearInterval(loadingInterval);
       enterBtn.classList.remove('hidden');
       enterBtn.style.opacity = 1;
+      enterBtn.style.pointerEvents = 'auto';
     }
   }, 30);
 
   enterBtn.addEventListener('click', () => {
+    // 로딩 오버레이 숨기기
     document.getElementById('loadingOverlay').style.display = 'none';
-     runIntroGrid();
 
-    // 알파벳 텍스트 애니메이션
-    const text = "entering to the forest of Chara";
-    const container = document.createElement('div');
-    container.id = "animatedText";
-    document.body.appendChild(container);
+    // introGrid 실행 (이제 버튼 클릭 후 실행)
+    runIntroGrid(container1, text1, triggers1);
+    runIntroGrid(container2, text2, triggers2);
+    runIntroGrid(container3, text3, triggers3);
 
-    for (let i = 0; i < text.length; i++) {
+    // 알파벳 텍스트 애니메이션 예시
+    const animText = "entering to the forest of Chara";
+    const animContainer = document.createElement('div');
+    animContainer.id = "animatedText";
+    document.body.appendChild(animContainer);
+
+    for (let i = 0; i < animText.length; i++) {
       const span = document.createElement('span');
-      span.textContent = text[i];
+      span.textContent = animText[i];
       span.style.animationDelay = `${i * 0.05}s`;
-      container.appendChild(span);
+      animContainer.appendChild(span);
     }
 
-    // 몇 초 후에 텍스트 사라지게 하고 싶다면 이 코드 추가
     setTimeout(() => {
-      container.remove();
+      animContainer.remove();
     }, 4000);
   });
 });
-enterBtn.classList.add('show');
 
-
-// ✅ 오버레이 없이 PNG 이미지 토글 표시
-const trigger = document.getElementById("videoTrigger"); // .music div
+// 오버레이 없이 PNG 이미지 토글 부분 (수정 없음)
+const trigger = document.getElementById("videoTrigger");
 const image = document.createElement("img");
 const youtube = document.getElementById("youtubePopup");
 
-image.src = "img/domamusic2.png"; // PNG 이미지 경로
+image.src = "img/domamusic2.png";
 image.id = "popupImage";
 image.style.position = "fixed";
 image.style.top = "20px";
@@ -71,11 +83,10 @@ image.style.zIndex = "9999";
 image.style.display = "none";
 image.style.pointerEvents = "auto";
 image.style.cursor = "pointer";
-image.style.maxWidth = "400px"; // 크기 조절 가능
+image.style.maxWidth = "400px";
 image.style.height = "auto";
 image.style.userSelect = "none";
 
-// 이미지 요소를 body에 추가
 document.body.appendChild(image);
 
 let isImageVisible = false;
@@ -83,7 +94,7 @@ let isImageVisible = false;
 trigger.addEventListener("click", () => {
   isImageVisible = !isImageVisible;
   image.style.display = isImageVisible ? "block" : "none";
-  youtube.style.display = isImageVisible ? "block" : "none";  // iframe 토글 추가
+  youtube.style.display = isImageVisible ? "block" : "none";
 });
 
 image.addEventListener("click", () => {
@@ -103,8 +114,9 @@ musicEl.addEventListener('mouseleave', () => {
   document.body.style.cursor = '';
 });
 
+// runIntroGrid 함수
 function runIntroGrid(container, characters, triggerIndexes) {
-  container.innerHTML = ''; // 초기화
+  container.innerHTML = '';
 
   const grid = document.createElement('div');
   grid.classList.add('grid');
@@ -158,10 +170,10 @@ function runIntroGrid(container, characters, triggerIndexes) {
   activateTrigger(currentTrigger);
 }
 
-
-
+// 변수 선언 (container3 추가, triggers3도 새로 선언)
 const container1 = document.getElementById('introGridContainer1');
 const container2 = document.getElementById('introGridContainer2');
+const container3 = document.getElementById('introGridContainer3');
 
 const text1 = "Hello, this is the Forest of Chara — a quiet corner somewhere on Earth.";
 const triggers1 = [10, 25, 45];
@@ -170,13 +182,7 @@ const text2 = "Many lizards live in this forest. To survive, they often rely on 
 const triggers2 = [7, 15, 50];
 
 const text3 = "Have you heard of autotomy? It’s when a lizard detaches part of its body to escape danger.";
-const triggers2 = [18, 24, 55];
+const triggers3 = [18, 24, 45];
 
-
-
-runIntroGrid(container1, text1, triggers1);
-runIntroGrid(container2, text2, triggers2);
-
-
-
+// runIntroGrid 호출는 버튼 클릭 후에 실행되므로 여기서는 제거
 
