@@ -222,5 +222,3 @@ function runIntroGrid() {
 
   activateTrigger(currentTrigger);
 }
-
-
