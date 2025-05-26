@@ -325,6 +325,7 @@ position: absolute;
   border: 1px solid black;
   font-family: 'Alef', sans-serif;
   border-radius: 8px;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
 }
 
 #enterBtn.show {
