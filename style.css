@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'AlefB';
+  src: url('fonts/Alef-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -335,4 +342,94 @@ position: absolute;
 
 .hidden {
   display: none;
+}
+
+/* 🔳 intro grid 위치 설정 */
+.grid {
+  position: fixed;
+  top: 160px;               /* 원하는 만큼 조절 가능 */
+  left: 20%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  gap: 5px;
+  z-index: 9999;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);   /* 배경 흰색 */
+  line-height: 40px;
+  border-radius: 6px; 
+  border: 1.5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'AlefB', monospace, sans-serif;
+  font-weight: 700;  /* 볼드 지정 */
+  font-style: normal; /* 기본값 */
+  font-size: 20px;
+  transition: none;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* 사파리용 */
+}
+
+.cell.revealed {
+  background: transparent;
+  color: black;
+  backdrop-filter: none ;
+  -webkit-backdrop-filter: none ;
+ border: 1.5px solid transparent;
+  filter: none ;
+    gap: 5px;
+}
+
+.cell.trigger {
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
+
+.cell.blinking {
+  animation: blink 0.8s infinite;
+}
+
+.cell.clicked {
+  background: transparent;
+  animation: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: black; /* 글자색 유지 */
+  opacity: 1; 
+  pointer-events: none; /* 클릭 불가능하게 */
+  transition: all 0.4s ease;
+}
+}
+
+.cell.empty {
+  background: transparent;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 100% { background: #444; }
+  50% { background: #888; }
+}
+
+.hidden {
+  display: none;
+}
+
+.cell:hover {
+  border: 1.5px solid black;
+  transform: scale(1.03);
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  
+}
+
+.cell.revealed:hover {
+  border: none;
+  transform: none;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  
 }
