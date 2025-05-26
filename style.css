@@ -103,7 +103,7 @@ html, body {
   left: 0;
   height: 100vh;
   width: auto;
-  opacity: 0;
+  opacity: 1;
   animation: fadeAnimation 21s infinite;
   z-index: 1; /* ✅ 이미지는 낮은 레이어 */
 }
@@ -119,9 +119,9 @@ html, body {
 
 @keyframes fadeAnimation {
   0%   { opacity: 0; }
-  10%  { opacity: 1; }
+  5%  { opacity: 1; }
   30%  { opacity: 1; }
-  40%  { opacity: 0; }
+  335%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
