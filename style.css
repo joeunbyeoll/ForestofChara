@@ -36,6 +36,17 @@ html, body {
   display: none;
 }
 
+#introGridContainer1,
+#introGridContainer2,
+#introGridContainer3 {
+  position: fixed;  /* absolute → fixed 로 변경 */
+  top: 50px;        /* 필요에 따라 조정 */
+  /* left 값도 필요에 맞게 조정 */
+  width: 400px;
+  height: auto;
+  /* z-index도 필요하면 설정 */
+}
+
 #introGridContainer1 {
   position: absolute;
   top: 50px;  /* 적절한 위치 */
