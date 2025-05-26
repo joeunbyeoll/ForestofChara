@@ -120,3 +120,45 @@ musicEl.addEventListener('mouseenter', () => {
 musicEl.addEventListener('mouseleave', () => {
   document.body.style.cursor = '';
 });
+
+// 🔵 로딩 화면 및 입장 버튼
+window.addEventListener('DOMContentLoaded', () => {
+  const loadingText = document.getElementById('loadingText');
+  const enterBtn = document.getElementById('enterBtn');
+  let percent = 0;
+
+  const loadingInterval = setInterval(() => {
+    percent++;
+    loadingText.textContent = `Loading ${percent}%`;
+
+    if (percent >= 100) {
+      clearInterval(loadingInterval);
+      enterBtn.classList.remove('hidden');
+      enterBtn.style.opacity = 1;
+    }
+  }, 30);
+
+  enterBtn.addEventListener('click', () => {
+    document.getElementById('loadingOverlay').style.display = 'none';
+
+    // 알파벳 텍스트 애니메이션
+    const text = "entering to the forest of Chara";
+    const container = document.createElement('div');
+    container.id = "animatedText";
+    document.body.appendChild(container);
+
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.animationDelay = `${i * 0.05}s`;
+      container.appendChild(span);
+    }
+
+    // 몇 초 후에 텍스트 사라지게 하고 싶다면 이 코드 추가
+    setTimeout(() => {
+      container.remove();
+    }, 4000);
+  });
+});
+enterBtn.classList.add('show');
+
