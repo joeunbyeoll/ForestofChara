@@ -14,66 +14,48 @@ container.addEventListener('wheel', (e) => {
   container.scrollLeft += scrollAmount;
 }, { passive: false });
 
-// 텍스트 요소
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
-const text4El = document.getElementById('text4');
+// 🔵 로딩 화면 및 입장 버튼
+window.addEventListener('DOMContentLoaded', () => {
+  const loadingText = document.getElementById('loadingText');
+  const enterBtn = document.getElementById('enterBtn');
+  let percent = 0;
 
-// 텍스트 내용
-const text1 = "Hello.\nThis is the Forest of Chara.\nA quiet corner somewhere on Earth. In this forest, many lizards live their lives.\n \nThey often resort to a behavior called 'Autotomy' to survive.";
-const text2 = "Have you ever heard of 'Autotomy'? \n'Autotomy' is the behavior in which a lizard, when threatened, voluntarily detaches a part of its body to escape. They bend their bodies and renew themselves to keep living.";
-const text3 = "There are times in life when we all want to run away — because we live an endlessly busy life.\n \nHow did you end up here? And do you feel like running away now?";
-const text4 = "Here in this place, your autotomy is not a weakness, but the courage to move forward. Feel free to lay down your worries here and let them go.";
+  const loadingInterval = setInterval(() => {
+    percent++;
+    loadingText.textContent = `Loading ${percent}%`;
 
-// 인덱스 객체로 관리
-const index1 = { value: 0 };
-const index2 = { value: 0 };
-const index3 = { value: 0 };
-const index4 = { value: 0 };
+    if (percent >= 100) {
+      clearInterval(loadingInterval);
+      enterBtn.classList.remove('hidden');
+      enterBtn.style.opacity = 1;
+    }
+  }, 30);
 
-let text1Typing = false, text2Typing = false, text3Typing = false, text4Typing = false;
+  enterBtn.addEventListener('click', () => {
+    document.getElementById('loadingOverlay').style.display = 'none';
+     runIntroGrid();
 
-function typeText(targetEl, text, indexRef, callback) {
-  if (indexRef.value < text.length) {
-    const char = text.charAt(indexRef.value);
-    targetEl.innerHTML += char === '\n' ? '<br>' : char;
-    indexRef.value++;
-    setTimeout(() => typeText(targetEl, text, indexRef, callback), 110);
-  } else if (callback) {
-    callback();
-  }
-}
+    // 알파벳 텍스트 애니메이션
+    const text = "entering to the forest of Chara";
+    const container = document.createElement('div');
+    container.id = "animatedText";
+    document.body.appendChild(container);
 
-// 텍스트 트리거 위치
-const text1TriggerPoint = 280;
-const text2TriggerPoint = 1800;
-const text3TriggerPoint = 3500;
-const text4TriggerPoint = 4700;
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.animationDelay = `${i * 0.05}s`;
+      container.appendChild(span);
+    }
 
-container.addEventListener('scroll', () => {
-  const scrollX = container.scrollLeft;
-
-  if (scrollX > text1TriggerPoint && !text1Typing && index1.value === 0) {
-    text1Typing = true;
-    typeText(text1El, text1, index1);
-  }
-
-  if (scrollX > text2TriggerPoint && !text2Typing && index2.value === 0) {
-    text2Typing = true;
-    typeText(text2El, text2, index2);
-  }
-
-  if (scrollX > text3TriggerPoint && !text3Typing && index3.value === 0) {
-    text3Typing = true;
-    typeText(text3El, text3, index3);
-  }
-
-  if (scrollX > text4TriggerPoint && !text4Typing && index4.value === 0) {
-    text4Typing = true;
-    typeText(text4El, text4, index4);
-  }
+    // 몇 초 후에 텍스트 사라지게 하고 싶다면 이 코드 추가
+    setTimeout(() => {
+      container.remove();
+    }, 4000);
+  });
 });
+enterBtn.classList.add('show');
+
 
 // ✅ 오버레이 없이 PNG 이미지 토글 표시
 const trigger = document.getElementById("videoTrigger"); // .music div
@@ -121,59 +103,14 @@ musicEl.addEventListener('mouseleave', () => {
   document.body.style.cursor = '';
 });
 
-// 🔵 로딩 화면 및 입장 버튼
-window.addEventListener('DOMContentLoaded', () => {
-  const loadingText = document.getElementById('loadingText');
-  const enterBtn = document.getElementById('enterBtn');
-  let percent = 0;
-
-  const loadingInterval = setInterval(() => {
-    percent++;
-    loadingText.textContent = `Loading ${percent}%`;
-
-    if (percent >= 100) {
-      clearInterval(loadingInterval);
-      enterBtn.classList.remove('hidden');
-      enterBtn.style.opacity = 1;
-    }
-  }, 30);
-
-  enterBtn.addEventListener('click', () => {
-    document.getElementById('loadingOverlay').style.display = 'none';
-     runIntroGrid();
-
-    // 알파벳 텍스트 애니메이션
-    const text = "entering to the forest of Chara";
-    const container = document.createElement('div');
-    container.id = "animatedText";
-    document.body.appendChild(container);
-
-    for (let i = 0; i < text.length; i++) {
-      const span = document.createElement('span');
-      span.textContent = text[i];
-      span.style.animationDelay = `${i * 0.05}s`;
-      container.appendChild(span);
-    }
-
-    // 몇 초 후에 텍스트 사라지게 하고 싶다면 이 코드 추가
-    setTimeout(() => {
-      container.remove();
-    }, 4000);
-  });
-});
-enterBtn.classList.add('show');
-
-function runIntroGrid() {
-  const container = document.getElementById('introGridContainer');
+function runIntroGrid(container, characters, triggerIndexes) {
   container.innerHTML = ''; // 초기화
 
-  const characters = "Hello, this is the Forest of Chara — a quiet corner somewhere on Earth.";
   const grid = document.createElement('div');
   grid.classList.add('grid');
   container.appendChild(grid);
 
   const cells = [];
-  const triggerIndexes = [10, 25, 45]; // 클릭해야 할 셀 인덱스들
   const triggerCells = [];
 
   for (let i = 0; i < characters.length; i++) {
@@ -216,9 +153,30 @@ function runIntroGrid() {
         cells[i].classList.add('revealed');
       }, i * 100);
     }
-
-    // 마지막 셀까지 출력 완료 후에도 남겨두기
   }
 
   activateTrigger(currentTrigger);
 }
+
+
+
+const container1 = document.getElementById('introGridContainer1');
+const container2 = document.getElementById('introGridContainer2');
+
+const text1 = "Hello, this is the Forest of Chara — a quiet corner somewhere on Earth.";
+const triggers1 = [10, 25, 45];
+
+const text2 = "Many lizards live in this forest. To survive, they often rely on a behavior called 'Autotomy'.";
+const triggers2 = [7, 15, 50];
+
+const text3 = "Have you heard of autotomy? It’s when a lizard detaches part of its body to escape danger.";
+const triggers2 = [18, 24, 55];
+
+
+
+runIntroGrid(container1, text1, triggers1);
+runIntroGrid(container2, text2, triggers2);
+
+
+
+
