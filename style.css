@@ -36,54 +36,30 @@ html, body {
   display: none;
 }
 
-.image-text, .image-text2,.image-text3,.image-text4 {
+#introGridContainer1 {
   position: absolute;
-  color: white;
-  font-size: 30px;
-  font-family: 'Alef', sans-serif;
-  pointer-events: none;
-  white-space: pre-wrap; /* 줄바꿈 유지 */
-  z-index: 10; 
-  line-height: 1.7;
-  /* top은 각각 다르게 */
+  top: 50px;  /* 적절한 위치 */
+  left: 300px;  /* 왼쪽으로 50px */
+  width: 400px;
+  height: auto;
+  /* 필요하면 스타일 추가 */
 }
 
-.image-text {
+#introGridContainer2 {
+  position: absolute;
+  top: 50px;
+  left: 1300px;  /* 오른쪽으로 500px */
+  width: 400px;
+  height: auto;
+}
+
+#introGridContainer3 {
+  position: absolute;
   top: 100px;
-  left: 1200px;
-  width: 400px; /* 원하는 크기로 고정 */
-  max-width: 40vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  left: 1300px;  /* 오른쪽으로 500px */
+  width: 400px;
+  height: auto;
 }
-
-.image-text2 {
-  top: 100px;
-  left: 3000px;
-  width: 400px; /* 원하는 크기로 고정 */
-  max-width: 40vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.image-text3 {
-  top: 100px;
-  left: 4700px;
-  width: 400px; /* 원하는 크기로 고정 */
-  max-width: 40vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.image-text4 {
-  top: 100px;
-  left: 6600px;
-  width: 400px; /* 원하는 크기로 고정 */
-  max-width: 40vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 
 .music {
   position: fixed; /* 또는 absolute */
@@ -346,9 +322,7 @@ position: absolute;
 
 /* 🔳 intro grid 위치 설정 */
 .grid {
-  position: absolute;
-  top: 160px;               /* 원하는 만큼 조절 가능 */
-  left: 300px;
+  position: absolute;            /* 원하는 만큼 조절 가능 */
   width: 400px;
   transform: translateX(-50%);
   display: grid;
@@ -433,4 +407,10 @@ position: absolute;
   transform: none;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   
+}
+
+.intro-grid-container {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 }
