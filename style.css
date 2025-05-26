@@ -346,9 +346,10 @@ position: absolute;
 
 /* 🔳 intro grid 위치 설정 */
 .grid {
-  position: fixed;
+  position: absolute;
   top: 160px;               /* 원하는 만큼 조절 가능 */
-  left: 20%;
+  left: 300px;
+  width: 400px;
   transform: translateX(-50%);
   display: grid;
   grid-template-columns: repeat(9, 40px);
