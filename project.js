@@ -49,6 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
     runIntroGrid(container1, text1, triggers1);
     runIntroGrid(container2, text2, triggers2);
     runIntroGrid(container3, text3, triggers3);
+    runIntroGrid(container4, text4, triggers4);
 
     // 알파벳 텍스트 애니메이션 예시
     const animText = "entering to the forest of Chara";
@@ -115,11 +116,16 @@ musicEl.addEventListener('mouseleave', () => {
 });
 
 // runIntroGrid 함수
-function runIntroGrid(container, characters, triggerIndexes) {
+function runIntroGrid(container, characters, triggerIndexes, columns = 16) {
   container.innerHTML = '';
+
+  const rows = Math.ceil(characters.length / columns);
 
   const grid = document.createElement('div');
   grid.classList.add('grid');
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = `repeat(${columns}, auto)`;
+  grid.style.gridTemplateRows = `repeat(${rows}, auto)`;
   container.appendChild(grid);
 
   const cells = [];
@@ -174,15 +180,19 @@ function runIntroGrid(container, characters, triggerIndexes) {
 const container1 = document.getElementById('introGridContainer1');
 const container2 = document.getElementById('introGridContainer2');
 const container3 = document.getElementById('introGridContainer3');
+const container4 = document.getElementById('introGridContainer4');
 
-const text1 = "Hello, this is the Forest of Chara — a quiet corner somewhere on Earth.";
+const text1 = "Hello, this is the Forest of Chara—a quiet corner somewhere on Earth.";
 const triggers1 = [10, 25, 45];
 
-const text2 = "Many lizards live in this forest. To survive, they often rely on a behavior called 'Autotomy'.";
-const triggers2 = [7, 15, 50];
+const text2 = "Many lizards live in this forest.To survive, they often rely on a behavior called 'Autotomy'.Have you heard of autotomy? It’s when a lizard detaches part of its body to escape danger.";
+const triggers2 = [7, 15, 50, 58, 66, 72];
 
-const text3 = "Have you heard of autotomy? It’s when a lizard detaches part of its body to escape danger.";
-const triggers3 = [18, 24, 45];
+const text3 = "They bend their bodies and renew themselves to keep living. There are times in life when we all want to run away because we live an endlessly busy life."
+const triggers3 = [1, 19, 35, 67, 89, 120];
+
+const text4 = "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward."
+const triggers4 = [14, 29, 37, 49, 99, 150];
 
 // runIntroGrid 호출는 버튼 클릭 후에 실행되므로 여기서는 제거
 
