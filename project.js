@@ -191,7 +191,7 @@ const triggers2 = [7, 15, 50, 58, 66, 72];
 const text3 = "They bend their bodies and renew themselves to keep living. There are times in life when we all want to run away because we live an endlessly busy life."
 const triggers3 = [1, 19, 35, 67, 89, 120];
 
-const text4 = "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward."
+const text4 = "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward............"
 const triggers4 = [14, 29, 37, 49, 99, 150];
 
 // runIntroGrid 호출는 버튼 클릭 후에 실행되므로 여기서는 제거
