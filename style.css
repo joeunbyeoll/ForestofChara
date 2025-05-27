@@ -23,7 +23,7 @@ html, body {
 
 .image-slider {
   position: relative; /* 반드시 있어야 자식 absolute가 기준 */
-  width: 200vw;
+  width: 100vw;
   height: 100vh;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -37,17 +37,16 @@ html, body {
 }
 
 .intro-grid-container {
-  position: absolute;
-  top: 50px;         /* 원하는 위치 */
+  position: absolute;      /* 원하는 위치 */
   width: 400px;
   height: auto;
 }
 
 /* 각 그리드의 좌표 조정 (스크롤 위치에 따라 다르게) */
-#introGridContainer1 { left: 300px; }
-#introGridContainer2 { left: 1300px; }
-#introGridContainer3 { left: 2000px; }
-
+#introGridContainer1 {   top: 200px;   left: 250px; }
+#introGridContainer2 {   top: 150px;   left: 2000px; }
+#introGridContainer3 {   top: 200px;   left: 3700px; }
+#introGridContainer4 {   top: 20px;   left: 5500px; }
 }
 
 .music {
@@ -65,16 +64,27 @@ html, body {
 }
 
 .scroll-dummy {
-  width: 585vw; /* ✅ 이미지 수에 맞춰서 설정 */
+  width: 450vw; /* ✅ 이미지 수에 맞춰서 설정 */
   height: 1px;  /* ✅ 높이를 최소화해서 세로 스크롤 안 생기게 */
 }
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  width: 100vw; /* 뷰포트 너비에 딱 맞게 */
+  padding: 0; /* 혹시 padding 있으면 제거 */
+  margin: 0; /* margin도 확인 */
+  box-sizing: border-box;
+}
+
 
 .fade-img {
   position: absolute;
   top: 0;
   left: 0;
   height: 100vh;
-  width: auto;
+  width: auto;  
   opacity: 1;
   animation: fadeAnimation 21s infinite;
   z-index: 1; /* ✅ 이미지는 낮은 레이어 */
@@ -315,9 +325,12 @@ position: absolute;
   width: 400px;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: repeat(9, 40px);
+  grid-template-columns: repeat(5, 40px);
   gap: 5px;
   z-index: 9999;
+  max-width: 900px; /* 적당히 줄바꿈 유도할 폭 */
+  margin: 0 auto;
+  height: auto; /* 높이는 자동 */
 }
 
 .cell {
@@ -402,4 +415,8 @@ position: absolute;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
+}
+
+#container img:last-child {
+  margin-right: 0; /* 마지막 이미지 오른쪽 여백 없애기 */
 }
