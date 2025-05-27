@@ -49,6 +49,10 @@ html, body {
 #introGridContainer4 {   top: 20px;   left: 5500px; }
 }
 
+.cell, .cell:hover, .cell.revealed:hover {
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
+}
+
 .music {
   position: fixed; /* 또는 absolute */
   top: 10px;
@@ -381,7 +385,6 @@ position: absolute;
   pointer-events: none; /* 클릭 불가능하게 */
   transition: all 0.4s ease;
 }
-}
 
 .cell.empty {
   background: transparent;
@@ -404,12 +407,13 @@ position: absolute;
   
 }
 
+.cell.clicked,
+.cell.clicked:hover,
+.cell.revealed,
 .cell.revealed:hover {
-  border: none;
-  transform: none;
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  
-}
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
+  border: 1.5px solid transparent;
+  transform: none}
 
 .intro-grid-container {
   margin-bottom: 40px;
@@ -419,4 +423,54 @@ position: absolute;
 
 #container img:last-child {
   margin-right: 0; /* 마지막 이미지 오른쪽 여백 없애기 */
+}
+
+
+.note-box {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.note-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  object-fit: cover;
+  z-index: -1; /* 텍스트 박스 뒤로 보이게 */
+}
+
+/* textarea를 이미지 위에 올림 */
+#userTextarea {
+  position: absolute;
+  top: 20px;      /* 이미지 안에서 위치 조정 */
+  left: 20px;
+  width: 360px;   /* 이미지 안에서 크기 맞게 */
+  height: 240px;
+  background: transparent;
+  color: black;
+  font-family: 'Alef', sans-serif;
+  font-size: 18px;
+  border: none;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  z-index: 10;
+}
+
+/* 완료 버튼도 이미지 위에 올림 */
+#submitBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 20;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-family: 'Alef', sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
