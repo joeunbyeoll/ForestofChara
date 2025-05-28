@@ -194,5 +194,12 @@ const triggers3 = [1, 19, 35, 67, 89, 120];
 const text4 = "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward............"
 const triggers4 = [14, 29, 37, 49, 99, 150];
 
-// runIntroGrid 호출는 버튼 클릭 후에 실행되므로 여기서는 제거
+
+
+
+function getInput() {
+  const value = document.getElementById('userText').value;
+  console.log('입력된 텍스트:', value);
+  alert('입력한 내용: ' + value);
+}
 
