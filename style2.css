@@ -48,7 +48,7 @@ body {
 }
 
 .popup-container[data-index="0"] { left: 35px; top: 55px; }
-.popup-container[data-index="1"] { left: 370px; top: 255px;}
+.popup-container[data-index="1"] { left: 370px; top: 275px;}
 .popup-container[data-index="2"] { left: 800px; top: 55px}
 .popup-container[data-index="3"] { left: 1200px; top: 255px}
 
@@ -167,3 +167,147 @@ body {
 .circle.black:hover {
   background-color: black;
 }
+
+
+.circle.yellow {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 3px solid yellow;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  pointer-events: auto;
+}
+
+.circle.yellow:hover {
+  background-color: yellow;
+}
+
+.circle.yellow::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: none;  /* ✅ 중요: hover 막지 않기 위해 */
+}
+
+
+#bookPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: transparent;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#closeBookBtn {
+  position: absolute;
+  top: auto;       /* 위 위치 자동 해제 */
+  bottom: -40px;    /* 책 이미지 아래쪽에서 20px 위 */
+  left: 50%;       /* 가로 중앙 */
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  z-index: 1100;
+  line-height: 1;
+  
+}
+
+#bookPage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+
+.clickZone {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
+
+
+#leftSide {
+  left: 0;
+}
+
+#rightSide {
+  right: 0;
+}
+
+#bookPopup.hidden {
+  display: none !important;
+}
+
+.text-overlay1 {
+  position: absolute;
+  left: 20px; 
+  top: 90px;
+  color: black;
+  background-color: transparent;
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.text-overlay2 {
+  position: absolute;
+  left: 70px; 
+  top: 20px;
+  color: black;
+  background-color: transparent;
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.text-overlays2 {
+  position: absolute;
+  left: 175px; 
+  top: 76px;
+  color: black;
+  background-color: transparent;
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+
+.text-overlay3 {
+  position: absolute;
+  left: 50px; 
+  top: 100px;
+  color: black;
+  background-color: transparent;
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+
