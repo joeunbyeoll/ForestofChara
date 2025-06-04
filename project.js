@@ -75,18 +75,7 @@ const trigger = document.getElementById("videoTrigger");
 const image = document.createElement("img");
 const youtube = document.getElementById("youtubePopup");
 
-image.src = "img/domamusic2.png";
-image.id = "popupImage";
-image.style.position = "fixed";
-image.style.top = "20px";
-image.style.left = "20px";
-image.style.zIndex = "9999";
-image.style.display = "none";
-image.style.pointerEvents = "auto";
-image.style.cursor = "pointer";
-image.style.maxWidth = "400px";
-image.style.height = "auto";
-image.style.userSelect = "none";
+
 
 document.body.appendChild(image);
 
@@ -114,6 +103,8 @@ musicEl.addEventListener('mouseenter', () => {
 musicEl.addEventListener('mouseleave', () => {
   document.body.style.cursor = '';
 });
+
+
 
 // runIntroGrid 함수
 function runIntroGrid(container, characters, triggerIndexes, columns = 16) {
@@ -164,6 +155,7 @@ function runIntroGrid(container, characters, triggerIndexes, columns = 16) {
     });
   }
 
+
   function revealAll() {
     for (let i = 0; i < cells.length; i++) {
       setTimeout(() => {
@@ -172,6 +164,10 @@ function runIntroGrid(container, characters, triggerIndexes, columns = 16) {
       }, i * 100);
     }
   }
+
+if (Math.random() < 0.2) {
+  circle.classList.add('black');
+}
 
   activateTrigger(currentTrigger);
 }
