@@ -21,6 +21,7 @@ html, body {
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto; /* ✅ 커서 유지 */
 }
 
+
 .image-slider {
   position: relative; /* 반드시 있어야 자식 absolute가 기준 */
   width: 100vw;
@@ -44,28 +45,16 @@ html, body {
 
 /* 각 그리드의 좌표 조정 (스크롤 위치에 따라 다르게) */
 #introGridContainer1 {   top: 200px;   left: 250px; }
-#introGridContainer2 {   top: 150px;   left: 2000px; }
-#introGridContainer3 {   top: 200px;   left: 3700px; }
-#introGridContainer4 {   top: 20px;   left: 5500px; }
+#introGridContainer2 {   top: 150px;   left: 2100px; }
+#introGridContainer3 {   top: 300px;   left: 4000px; }
+#introGridContainer4 {   top: 20px;   left: 6000px; }
 
 
 .cell, .cell:hover, .cell.revealed:hover {
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
 }
 
-.music {
-  position: fixed; /* 또는 absolute */
-  top: 10px;
-  left: 10px;
-  width: 60px;
-  height: 60px;
-  z-index: 9999; /* 아주 높은 숫자로 */
-  will-change: cursor;
-}
 
-.music:hover {
-  cursor: none !important;
-}
 
 .scroll-dummy {
   width: 450vw; /* ✅ 이미지 수에 맞춰서 설정 */
@@ -112,7 +101,6 @@ html, body {
 }
 
 
-
 .typing-fixed {
   position: fixed;
   top: 120px;     /* 원하는 위치로 조정 */
@@ -147,121 +135,6 @@ html, body {
 }
 
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* 네온 효과 감싸는 wrapper */
-.glow-wrapper {
-  position: fixed; /* 화면 고정 위치 */
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-
-
-/* 네온 효과: 이미지 외곽 빛나게 */
-.glow-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url('img/cursorr.png') no-repeat center / contain;
-  filter:
-    brightness(0.6)
-    drop-shadow(0 0 6px whitesmoke)
-    drop-shadow(0 0 12px whitesmoke);
-  opacity: 0;
-  transition: none;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 8px;
-}
-
-/* 마우스 올리면 네온 빛 켜짐, 이미지 확대 */
-.glow-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* 이미지와 iframe 사이 간격 */
-}
-
-#youtubePlayer {
-  /* 처음엔 숨김 */
-  border: none;
-  border-radius: 8px;
-  position: absolute; top: 50%; left: 50%; width: 560px; height: 315px; transform: translate(-50%, -50%);"
-}
-.glow-wrapper:hover .music {
-  transform: none;
-  cursor: none;
-}
-
-.glow-wrapper:hover::before {
-  opacity: 1;
-}
-
-
-/* 유튜브 오버레이 기본 숨김 */
-.youtube-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.85);
-  display: none; /* 기본 숨김 */
-  justify-content: center;
-  align-items: center;
-  z-index: 20000;
-}
-
-/* 유튜브 iframe 컨테이너 */
-.youtube-container {
-  position: relative;
-  width: 560px;
-  max-width: 90vw;
-  aspect-ratio: 16 / 9;
-  background: black;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-/* 닫기 버튼 */
-.close-btn {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-  font-weight: bold;
-  z-index: 10;
-  transition: color 0.3s ease;
-}
-
-.close-btn:hover {
-  color: cyan;
-}
-
-iframe {
-  display: none;
-  position: fixed;
-  top: 165px;
-  left: 60px;
-  width: 160px;
-  height: 160px;
-  border: none;
-  z-index: 10000;
-  background: black;
-  border-radius: 5px;  /* 둥근 정도 조절 가능 */
-  overflow: hidden;     /* 자식 요소가 라운드 영역 밖으로 나가지 않게 */
-  border: none;
-}
 
 /* 🔵 로딩 화면 기본 스타일 */
 #loadingOverlay {
@@ -427,7 +300,8 @@ position: absolute;
 .cell.revealed:hover {
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
   border: 1.5px solid transparent;
-  transform: none}
+  transform: none
+}
 
 .intro-grid-container {
   margin-bottom: 40px;
@@ -436,61 +310,37 @@ position: absolute;
 }
 
 
-/* CSS */
-.input-box {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-}
 
-.input-box label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
 
-.input-box textarea {
-  padding: 10px;
-  border: 2px solid #ccc;
+
+.newpage-link {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border: 2px solid #000;
   border-radius: 8px;
-  font-size: 16px;
-  resize: vertical;
-}
-#myTextarea {
-  position: absolute;
-  top: 400px;
-  left: 6310px;
   z-index: 9999;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  resize: vertical;
-  font-size: 16px;
-  line-height: 1.6;
-  border: 0px solid transparent;
-  outline: none;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  list-style: none; /* 기본 리스트 점 제거 */
+  margin: 0; /* 기본 마진 제거 */
 }
 
-#myTextarea:focus {
-  border-color: #666;
+.newpage-link li {
+  margin: 0;
+  padding: 0;
 }
 
-button {
-  position: absolute;
-  top: 340px;
-  left: 6450px;
-  z-index: 9999;
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
+.newpage-link a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Garcog', sans-serif; /* 원하시는 폰트 사용 */
 }
 
-
-.domatext {
-  position: absolute;
-  top:300px;
-  left: 6300px;
-  height: 500px;
-  width: auto;
-  z-index: 1;
+.newpage-link a:hover {
+  text-decoration: underline;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
 }
 
