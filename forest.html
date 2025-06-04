@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New Page</title>
+  <link rel="stylesheet" href="style2.css" />
+  <link rel="icon" href="img/cursorr.png" type="image/png">
+</head>
+<body>
+  <img src="img/forest.png" class="forest"/ >
+
+  <!-- 팝업 컨테이너들 -->
+  <div id="popupContainer" class="popup-container hidden" data-index="0">
+    <img src="img/domamusic.png" class="domatext" />
+    <div id="popup" class="popup">
+      <div class="input-box">
+        <textarea id="myTextarea" placeholder="Tell me what you want to run away from" rows="4" cols="17"></textarea>
+      </div>
+      <button onclick="getInput()">SEND</button>
+    </div>
+  </div>
+
+  <div class="popup-container hidden" data-index="1">
+    <div class="image-wrapper">
+      <img src="img/domamusic2.png" class="domatext" />
+      <div class="text-overlay1">Today's<br> Lucky color <br> <br>MINT </div>
+    </div>
+    <div class="popup"></div>
+  </div>
+
+  <div class="popup-container hidden" data-index="2">
+    <div class="image-wrapper">
+      <img src="img/doma3.png" class="domatext" />
+      <div class="text-overlay2">Today's<br> Lucky time </div>
+      <div class="text-overlays2">3PM</div>
+    </div>
+    <div class="popup"></div>
+  </div>
+
+  <div class="popup-container hidden" data-index="3">
+    <div class="image-wrapper">
+      <img src="img/doma4.png" class="domatext2" />
+      <div class="text-overlay3">Today's<br> Lucky number 36 </div>
+    </div>
+    <div class="popup"></div>
+  </div>
+
+  <div id="container"></div>
+
+<div id="bookPopup" class="hidden">
+  <img id="bookPage" src="img/newspaper.png" alt="책 페이지" />
+  <div id="leftSide" class="clickZone"></div>
+  <div id="rightSide" class="clickZone"></div>
+  <button id="closeBookBtn">×</button>
+</div>
+
+
+  <script>
+    const popups = document.querySelectorAll('.popup-container');
+    let blackCircleCount = 0;
+    let pinkCircleGiven = false;
+    const maxBlackCircles = 4;
+    let totalCircles = 0;
+    const maxTotalCircles = 30;
+
+    const intervalId = setInterval(() => {
+      if (totalCircles >= maxTotalCircles) {
+        clearInterval(intervalId);
+        return;
+      }
+      createStaticCircle();
+    }, 300);
+
+    function createStaticCircle() {
+      totalCircles++; // 여기 위치 괜찮음
+
+      const container = document.getElementById('container');
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
+
+      const circleDiameter = 15;
+      const padding = 30;
+
+      const x = Math.random() * (container.clientWidth - circleDiameter - padding);
+      const y = Math.random() * (container.clientHeight - circleDiameter - padding);
+
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+
+      const shouldBeBlack = Math.random() < 0.3 && blackCircleCount < maxBlackCircles;
+      const yellowStartAfter = 10;
+      const shouldBeYellow = totalCircles >= yellowStartAfter && !shouldBeBlack && !pinkCircleGiven && Math.random() < 0.1;
+
+      if (shouldBeBlack) {
+        circle.classList.add('black');
+        const popupIndex = blackCircleCount;
+        blackCircleCount++;
+
+        // 검은 원 클릭하면 각 팝업 토글
+        circle.addEventListener('click', () => {
+          const popup = popups[popupIndex];
+          popup.classList.toggle('hidden');
+        });
+
+      } else if (shouldBeYellow) {
+        circle.classList.add('yellow');
+        pinkCircleGiven = true;
+        circle.addEventListener('click', openBook);
+         
+      
+
+      } else {
+        // 나머지 원은 클릭 이벤트 없음 (팝업 열리지 않음)
+      }
+
+      container.appendChild(circle);
+    }
+
+    const bookPages = [
+      'img/newspaper.png',
+      'img/newspaper2.png',
+      'img/newspaper3.png',
+      'img/newspaper4.png',
+      'img/newspaper5.png'
+    ];
+
+    const bookPopup = document.getElementById('bookPopup');
+    const bookPage = document.getElementById('bookPage');
+    const leftSide = document.getElementById('leftSide');
+    const rightSide = document.getElementById('rightSide');
+    const closeBookBtn = document.getElementById('closeBookBtn');
+
+    let currentPage = 0;
+
+    function openBook() {
+      bookPopup.classList.remove('hidden');
+      currentPage = 0;
+      updatePage();
+    }
+
+    function closeBook() {
+      bookPopup.classList.add('hidden');
+    }
+
+    function updatePage() {
+      bookPage.src = bookPages[currentPage];
+    }
+
+    leftSide.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePage();
+      }
+    });
+
+    rightSide.addEventListener('click', () => {
+      if (currentPage < bookPages.length - 1) {
+        currentPage++;
+        updatePage();
+      }
+    });
+
+    closeBookBtn.addEventListener('click', closeBook);
+
+
+
+  </script>
+
+</body>
+</html>
