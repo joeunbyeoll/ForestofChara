@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New Page</title>
+  <link rel="stylesheet" href="style2.css" />
+  <link rel="icon" href="img/cursorr.png" type="image/png">
+</head>
+<body>
+  <img src="img/forest.png" class="forest"/ >
+
+
+<!-- 둘을 감싸는 부모 컨테이너 -->
+<div id="popupContainer" class="popup-container hidden" data-index="0">
+  <img src="img/domamusic.png" class="domatext" />
+  <div id="popup" class="popup">
+    <div class="input-box">
+      <textarea id="myTextarea" placeholder="Tell me what you want to run away from" rows="4" cols="17"></textarea>
+    </div>
+    <button onclick="getInput()">SEND</button>
+  </div>
+</div>
+
+<div class="popup-container hidden" data-index="1">
+  <img src="img/domamusic2.png" class="domatext" />
+  <div class="popup">
+  </div>
+</div>
+
+
+<div class="popup-container hidden" data-index="2">
+  <img src="img/doma3.png" class="domatext" />
+  <div class="popup">
+  </div>
+</div>
+
+<div class="popup-container hidden" data-index="3">
+  <img src="img/doma4.png" class="domatext2" />
+  <div class="popup">
+  </div>
+</div>
+
+<div id="container"></div>
+
+<script>
+const popups = document.querySelectorAll('.popup-container');
+let blackCircleCount = 0;
+const maxBlackCircles = 4;
+let totalCircles = 0;
+const maxTotalCircles = 30;
+
+const intervalId = setInterval(() => {
+  if (totalCircles >= maxTotalCircles) {
+    clearInterval(intervalId);
+    return;
+  }
+  createStaticCircle();
+  totalCircles++;
+}, 300);
+
+function createStaticCircle() {
+  const container = document.getElementById('container');
+  const circle = document.createElement('div');
+  circle.classList.add('circle');
+
+  const circleDiameter = 15;
+  const padding = 30;
+
+  // X, Y 랜덤 위치 배치
+  const x = Math.random() * (container.clientWidth - circleDiameter - padding);
+  const y = Math.random() * (container.clientHeight - circleDiameter - padding);
+
+  circle.style.left = `${x}px`;
+  circle.style.top = `${y}px`;
+
+  // ✅ 검정 원이 될 확률 30% + 최대 개수 제한
+  const shouldBeBlack = Math.random() < 0.3 && blackCircleCount < maxBlackCircles;
+
+  if (shouldBeBlack) {
+    circle.classList.add('black');
+    const popupIndex = blackCircleCount;
+    blackCircleCount++;
+
+    circle.addEventListener('click', () => {
+      const popup = popups[popupIndex];
+      popup.classList.toggle('hidden');
+    });
+  }
+
+  container.appendChild(circle);
+}
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'Alef';
+  src: url('fonts/Alef-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlefB';
+  src: url('fonts/Alef-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 스크롤 기능은 유지 */
+  height: 100%;
+  font-family: 'Alef', sans-serif;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto; /* ✅ 커서 유지 */
+}
+
+.forest{
+	position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* 파이어폭스 */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.popup-container {
+ position: absolute; /* 이걸 기준으로 내부 절대 위치 잡기 */ /* 이미지 위에서 얼마나 떨어질지 */
+  width: fit-content;
+  height: auto;
+  padding: 0;
+}
+
+.popup-container[data-index="0"] { left: 35px; top: 55px; }
+.popup-container[data-index="1"] { left: 370px; top: 255px;}
+.popup-container[data-index="2"] { left: 800px; top: 55px}
+.popup-container[data-index="3"] { left: 1200px; top: 255px}
+
+/* #myTextarea의 position을 relative 혹은 absolute(부모기준)로 수정 */
+#myTextarea {
+   position: absolute;
+  top: 70px; /* 이미지 위에서 얼마나 떨어질지 */
+  left: 28px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  resize: none;
+  font-size: 16px;
+  font-family: 'Alef', sans-serif;
+  line-height: 1.6;
+  border: 0px solid transparent;
+  outline: none;
+  border-radius: 8px;
+  width: 140px;
+  height: 100px;
+}
+
+/* 숨김 상태 */
+.hidden {
+  display: none;
+}
+
+.domatext {
+  height: 350px;
+  width: auto;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
+
+.domatext2 {
+  height: 200px;
+  width: auto;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
+
+.popup-container button {
+  position: absolute;
+  top: 25px; /* textarea 아래로 적당히 */
+  left: 110px;
+  z-index: 99;
+  background-color: whitesmoke;
+  border: solid 0.9px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+}
+
+
+.popup-toggle-btn {
+  position: fixed; /* 스크롤해도 위치 고정 */
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  z-index: 1100; /* 팝업 위에 보이도록 */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.popup-toggle-btn:hover {
+  background-color: #eee;
+}
+
+
+ #container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .circle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid lightgray;
+    background: transparent;
+    pointer-events: none;
+  }
+
+.circle.black {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background: transparent;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+  pointer-events: auto;
+}
+
+
+.circle.black::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.circle.black:hover {
+  background-color: black;
+}
