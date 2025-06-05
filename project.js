@@ -188,7 +188,7 @@ const text3 = "They bend their bodies and renew themselves to keep living. There
 const triggers3 = [1, 19, 35, 67, 89, 120];
 
 const text4 = "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward............"
-const triggers4 = [14, 29, 37, 49, 99, 150];
+const triggers4 = [14, 29, 37, 49, 99];
 
 
 
