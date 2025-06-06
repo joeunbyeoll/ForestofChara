@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <title>Forest of Chara</title>
   <link rel="stylesheet" href="style2.css" />
-<link rel="icon" href="img/cursorr.ico" type="image/x-icon">
-<link rel="shortcut icon" href="img/cursorr.ico" type="image/x-icon">
+  <link rel="icon" href="img/cursorr.png" type="image/png">
 </head>
 <body>
   <img src="img/forest4.png" class="forest"/ >
 
+  <!-- 팝업 컨테이너들 -->
   <div id="popupContainer" class="popup-container hidden" data-index="0">
     <img src="img/domamusic.png" class="domatext" />
     <div id="popup" class="popup">
       <div class="input-box">
         <textarea id="myTextarea" placeholder="Tell me what you want to run away from" rows="4" cols="17"></textarea>
       </div>
-      <button onclick="getInput()">SEND</button>
+     <button type="button" onclick="sendMessage()">SEND</button>
     </div>
   </div>
 
@@ -162,7 +162,32 @@
 
     closeBookBtn.addEventListener('click', closeBook);
 
+    function sendMessage() {
+  const msg = document.getElementById('myTextarea').value;
+  if (!msg.trim()) {
+    alert('Please write something!');
+    return;
+  }
 
+  fetch("https://script.google.com/macros/s/AKfycbxp4EmVmiMTtYZYqp8PtXf5BL7IZql1DkQZ35GbQd-pElP4UyKsFX9SQLVQU-tamTrQRQ/exec", {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: msg })
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("성공!", data);
+      alert("메시지가 전송되었습니다!");
+    })
+    .catch(error => {
+      console.error("에러!", error);
+      alert("에러가 발생했습니다!");
+    });
+}
+</script>
 
   </script>
 
