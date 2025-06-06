@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingText = document.getElementById('loadingText');
   const enterBtn = document.getElementById('enterBtn');
   let percent = 0;
- const minOpacity = 0.9;
+ const minOpacity = 0.93;
 
 
 
