@@ -47,7 +47,7 @@ body {
   padding: 0;
 }
 
-.popup-container[data-index="0"] { left: 35px; top: 55px; }
+.popup-container[data-index="0"] { left: 35px; top: 50px; }
 .popup-container[data-index="1"] { left: 370px; top: 275px;}
 .popup-container[data-index="2"] { left: 800px; top: 55px}
 .popup-container[data-index="3"] { left: 1200px; top: 255px}
