@@ -19,11 +19,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingText = document.getElementById('loadingText');
   const enterBtn = document.getElementById('enterBtn');
   let percent = 0;
+ const minOpacity = 0.9;
 
-  if (!loadingText || !enterBtn) {
-    console.error('loadingText 또는 enterBtn 요소를 찾을 수 없습니다!');
-    return;
-  }
+
 
   enterBtn.classList.add('hidden');
   enterBtn.style.opacity = 0;
@@ -32,12 +30,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingInterval = setInterval(() => {
     percent++;
     loadingText.textContent = `Loading ${percent}%`;
-
+ let alpha = 1 - (percent / 100) * (1 - minOpacity);
+  loadingOverlay.style.opacity = alpha;
     if (percent >= 100) {
       clearInterval(loadingInterval);
       enterBtn.classList.remove('hidden');
       enterBtn.style.opacity = 1;
       enterBtn.style.pointerEvents = 'auto';
+      loadingOverlay.style.opacity = minOpacity;
     }
   }, 30);
 
