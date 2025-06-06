@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingText = document.getElementById('loadingText');
   const enterBtn = document.getElementById('enterBtn');
   let percent = 0;
- const minOpacity = 0.3;
+ const minOpacity = 0.43;
 
 
   enterBtn.classList.add('hidden');
