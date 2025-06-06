@@ -55,7 +55,7 @@ body {
 /* #myTextarea의 position을 relative 혹은 absolute(부모기준)로 수정 */
 #myTextarea {
    position: absolute;
-  top: 70px; /* 이미지 위에서 얼마나 떨어질지 */
+  top: 75px; /* 이미지 위에서 얼마나 떨어질지 */
   left: 28px;
   z-index: 2;
   background: rgba(255, 255, 255, 0.3);
@@ -90,7 +90,7 @@ body {
 
 .popup-container button {
   position: absolute;
-  top: 25px; /* textarea 아래로 적당히 */
+  top: 30px; /* textarea 아래로 적당히 */
   left: 110px;
   z-index: 99;
   background-color: whitesmoke;
