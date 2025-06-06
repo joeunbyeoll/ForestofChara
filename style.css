@@ -140,7 +140,7 @@ html, body {
 #loadingOverlay {
   position: fixed;
   z-index: 99999;
-  background-color: white; /* ✅ 안정적인 흰 배경 */
+   background-color: rgba(255, 255, 255, 1);
   top: 0;
   left: 0;
   width: 100%;
