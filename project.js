@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingText = document.getElementById('loadingText');
   const enterBtn = document.getElementById('enterBtn');
   let percent = 0;
- const minOpacity = 0.93;
+ const minOpacity = 0.5;
 
 
 
@@ -31,13 +31,15 @@ window.addEventListener('DOMContentLoaded', () => {
     percent++;
     loadingText.textContent = `Loading ${percent}%`;
  let alpha = 1 - (percent / 100) * (1 - minOpacity);
-  loadingOverlay.style.opacity = alpha;
+  loadingOverlay.style.backgroundColor = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
+
     if (percent >= 100) {
       clearInterval(loadingInterval);
       enterBtn.classList.remove('hidden');
       enterBtn.style.opacity = 1;
       enterBtn.style.pointerEvents = 'auto';
-      loadingOverlay.style.opacity = minOpacity;
+      loadingOverlay.style.backgroundColor = `rgba(255, 255, 255, ${minOpacity})`;
+
     }
   }, 30);
 
