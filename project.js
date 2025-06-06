@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', () => {
  const minOpacity = 0.43;
 
 
-
   enterBtn.classList.add('hidden');
   enterBtn.style.opacity = 0;
   enterBtn.style.pointerEvents = 'none';
