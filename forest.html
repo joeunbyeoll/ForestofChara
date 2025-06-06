@@ -16,7 +16,7 @@
       <div class="input-box">
         <textarea id="myTextarea" placeholder="Tell me what you want to run away from" rows="4" cols="17"></textarea>
       </div>
-     <button type="button" onclick="sendMessage()">SEND</button>
+     <button type="button" onclick="sendMessage()"class="send-btn">SEND</button>
     </div>
   </div>
 
@@ -162,34 +162,29 @@
 
     closeBookBtn.addEventListener('click', closeBook);
 
-    function sendMessage() {
-  const msg = document.getElementById('myTextarea').value;
-  if (!msg.trim()) {
+  function sendMessage() {
+  const textarea = document.getElementById('myTextarea');
+  const msg = textarea.value.trim();
+  if (!msg) {
     alert('Please write something!');
     return;
   }
+  textarea.value = ""; // 보내기 전에 바로 지우기
 
-  fetch("https://script.google.com/macros/s/AKfycbxp4EmVmiMTtYZYqp8PtXf5BL7IZql1DkQZ35GbQd-pElP4UyKsFX9SQLVQU-tamTrQRQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyvtO2B8pCjT-rXUlLeoupT5IjtwyR5kbMjm8vj-Gs7vwEsqhvJOnsoY93-acPhWeC8Ug/exec", {
     method: "POST",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message: msg })
+    body: JSON.stringify({ message: msg }),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log("성공!", data);
-      alert("메시지가 전송되었습니다!");
-    })
-    .catch(error => {
-      console.error("에러!", error);
-      alert("에러가 발생했습니다!");
-    });
+  .then(response => {
+    // 성공 알림 등은 위에 설명한 방법으로 UI에만 띄우기
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
 }
+
 </script>
 
-  </script>
 
 </body>
 </html>
