@@ -289,11 +289,3 @@ position: relative;
     display: block;
   }
 
-  .go-deeper {
-  border: none;
-  background: none;
-  font-family: inherit; /* 부모와 같은 폰트 사용 */
-  padding: 0;
-  font-size: 1.2rem; /* 필요시 조정 */
-  color: inherit;     /* 기본 텍스트 색상 따르기 */
-}
