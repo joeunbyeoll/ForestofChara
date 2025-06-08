@@ -47,7 +47,7 @@ body {
   padding: 0;
 }
 
-.popup-container[data-index="0"] { left: 35px; top: 50px; }
+.popup-container[data-index="0"] { left: 35px; top: 55px; }
 .popup-container[data-index="1"] { left: 370px; top: 275px;}
 .popup-container[data-index="2"] { left: 800px; top: 55px}
 .popup-container[data-index="3"] { left: 1200px; top: 255px}
@@ -55,7 +55,7 @@ body {
 /* #myTextarea의 position을 relative 혹은 absolute(부모기준)로 수정 */
 #myTextarea {
    position: absolute;
-  top: 80px; /* 이미지 위에서 얼마나 떨어질지 */
+  top: 70px; /* 이미지 위에서 얼마나 떨어질지 */
   left: 28px;
   z-index: 2;
   background: rgba(255, 255, 255, 0.3);
@@ -90,7 +90,7 @@ body {
 
 .popup-container button {
   position: absolute;
-  top: 40px; /* textarea 아래로 적당히 */
+  top: 25px; /* textarea 아래로 적당히 */
   left: 110px;
   z-index: 99;
   background-color: whitesmoke;
@@ -212,6 +212,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
 }
 
 #closeBookBtn {
@@ -226,7 +227,7 @@ body {
   background-color: white;
   border: 1px solid black;
   border-radius: 10px;
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
+   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   z-index: 1100;
   line-height: 1;
   
