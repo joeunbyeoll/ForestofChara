@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
     { x: 2400, y: 300, image: 'img/domama3.png', width: 400 },
     { x: 3400, y: 600, image: 'img/domama4.png', width: 400 },
     { x: 4500, y: 250, image: 'img/domama5.png', width: 350 },
-    { x: 5000, y: 650, image: 'img/domama6.png', width: 600, triggerLetter: true }
+    { x: 5290, y: 720, image: 'img/domama6.png', width: 600, triggerLetter: true }
   ];
 
   const loadingInterval = setInterval(() => {
@@ -122,8 +122,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     Object.assign(linkText.style, {
       position: 'absolute',
-      bottom: '70px',
-      right: '20px',
+      bottom: '45px',
+      left: '5358px',
       fontFamily: 'AlefB',
       fontSize: '18px',
       color: 'black',
@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'forest.html'; // 경로 수정 가능
     });
 
-    document.body.appendChild(linkText);
+      container.appendChild(linkText); 
   }
 }, 0);  // setTimeout 닫힘
 
