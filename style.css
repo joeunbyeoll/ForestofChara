@@ -21,6 +21,78 @@ html, body {
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto; /* ✅ 커서 유지 */
 }
 
+#container {
+  position: relative; /* 절대 위치 .circle 기준 */
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto; /* 가로 스크롤 */
+  overflow-y: hidden; /* 세로 스크롤 차단 */
+  white-space: nowrap;
+}
+
+#text-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  white-space: nowrap;
+  margin-top: 40px;
+  width: max-content;  /* 자식 요소 합산 너비만큼 */
+  z-index: 10;         /* 이미지 위로 */
+}
+
+/* 스크롤 트리거 빈 공간 */
+.spacer {
+  flex-shrink: 0;
+  height: 100vh;
+}
+.typing-box {
+  flex-shrink: 0;
+  position: relative;
+  white-space: pre-wrap;
+  overflow: hidden;
+  font-size: 1.3em;
+  max-width: 40vw;
+  color: #000; /* 검정색 또는 원하는 글자색 지정 */
+  font-weight: 700;
+  text-shadow: 0 0 3px rgba(168, 255, 179, 0.7); /* 연한 네온 효과 */
+  user-select: none;
+  z-index: 10; /* 다른 요소보다 위에 나오도록 */
+}
+#text1 { width: 40vw; margin-right: 30vw; margin-left: 5vw}
+#text2 { width: 40vw; margin-right: 60vw; }
+#text3 { width: 40vw; margin-right: 60vw; }
+#text4 { width: 60vw; margin-right: 0; }
+
+#text1s {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  top: 30%; left: 5%; transform: none;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.spacer {
+  flex-shrink: 0;
+  height: 100vh; /* 높이도 지정해줘야 보임 (가로 스크롤 기준) */
+}
+
+
+.blink-bar {
+  display: inline-block;
+  width: 2px;
+  height: 1.3em;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+  background-color: #39ff14 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
 
 .image-slider {
   position: relative; /* 반드시 있어야 자식 absolute가 기준 */
@@ -37,27 +109,11 @@ html, body {
   display: none;
 }
 
-.intro-grid-container {
-  position: absolute;      /* 원하는 위치 */
-  width: 400px;
-  height: auto;
-}
-
-/* 각 그리드의 좌표 조정 (스크롤 위치에 따라 다르게) */
-#introGridContainer1 {   top: 200px;   left: 250px; }
-#introGridContainer2 {   top: 150px;   left: 2100px; }
-#introGridContainer3 {   top: 300px;   left: 4000px; }
-#introGridContainer4 {   top: 20px;   left: 6000px; }
-
-
-.cell, .cell:hover, .cell.revealed:hover {
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
-}
 
 
 
 .scroll-dummy {
-  width: 450vw; /* ✅ 이미지 수에 맞춰서 설정 */
+  width: 100vw; /* ✅ 이미지 수에 맞춰서 설정 */
   height: 1px;  /* ✅ 높이를 최소화해서 세로 스크롤 안 생기게 */
 }
 
@@ -116,22 +172,6 @@ html, body {
 @keyframes blinkCursor {
   0%, 100% { border-color: transparent; }
   50% { border-color: white; }
-}
-
-.typing-container {
-  font-size: 35px;
-  font-family: 'Alef', sans-serif;
-  position: fixed;
-  top: 50px;
-  left: 50px;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 300px;
-  background: none;
-  padding: 0;
-  border: none;
-  border-radius: 8px;
-  z-index: 1000;
 }
 
 
@@ -199,88 +239,8 @@ position: absolute;
   display: none;
 }
 
-/* 🔳 intro grid 위치 설정 */
-.grid {
-  position: absolute;            /* 원하는 만큼 조절 가능 */
-  width: 400px;
-  transform: translateX(-50%);
-  display: grid;
-  grid-template-columns: repeat(5, 40px);
-  gap: 5px;
-  z-index: 9999;
-  max-width: 900px; /* 적당히 줄바꿈 유도할 폭 */
-  margin: 0 auto;
-  height: auto; /* 높이는 자동 */
-}
 
-.cell {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.2);   /* 배경 흰색 */
-  line-height: 40px;
-  border-radius: 6px; 
-  border: 1.5px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'AlefB', monospace, sans-serif;
-  font-weight: 700;  /* 볼드 지정 */
-  font-style: normal; /* 기본값 */
-  font-size: 20px;
-  transition: none;
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px); /* 사파리용 */
-}
-
-.cell.revealed {
-  background: transparent;
-  color: black;
-  backdrop-filter: none ;
-  -webkit-backdrop-filter: none ;
- border: 1.5px solid transparent;
-  filter: none ;
-    gap: 5px;
-    cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  
-}
-}
-
-.cell,
-.cell.trigger,
-.cell.clicked,
-.cell.revealed {
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-}
-
-.cell.trigger {
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-}
-
-.cell.blinking {
-  animation: blink 0.8s infinite;
-}
-
-.cell.clicked {
-  background: transparent;
-  animation: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  color: black; /* 글자색 유지 */
-  opacity: 1; 
-  pointer-events: none; /* 클릭 불가능하게 */
-  transition: all 0.4s ease;
-   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  
-}
-}
-
-.cell.empty {
-  background: transparent;
-  pointer-events: none;
-}
-
-@keyframes blink {
+@keyframes blinkBackground {
   0%, 100% { background: #444; }
   50% { background: #888; }
 }
@@ -289,60 +249,51 @@ position: absolute;
   display: none;
 }
 
-.cell:hover {
-  border: 1.5px solid black;
-  transform: scale(1.03);
+
+.circle-container {
+position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red; /* 기본 원 색상 */
+  position: absolute;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  
-}
-
-.cell.clicked,
-.cell.clicked:hover,
-.cell.revealed,
-.cell.revealed:hover {
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto !important;
-  border: 1.5px solid transparent;
-  transform: none
-}
-
-.intro-grid-container {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-}
-
-
-
-
-
-.newpage-link {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 10px 20px;
-  border: 2px solid #000;
-  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.3s;
   z-index: 9999;
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-  list-style: none; /* 기본 리스트 점 제거 */
-  margin: 0; /* 기본 마진 제거 */
 }
 
-.newpage-link li {
-  margin: 0;
+.circle.black {
+    background-color: black;
+  }
+  .circle.yellow {
+    background-color: yellow;
+  }
+  .popup-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #333;
+    display: none;
+  }
+  .popup-container:not(.hidden) {
+    display: block;
+  }
+
+  .go-deeper {
+  border: none;
+  background: none;
+  font-family: inherit; /* 부모와 같은 폰트 사용 */
   padding: 0;
+  font-size: 1.2rem; /* 필요시 조정 */
+  color: inherit;     /* 기본 텍스트 색상 따르기 */
 }
-
-.newpage-link a {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  font-family: 'Garcog', sans-serif; /* 원하시는 폰트 사용 */
-}
-
-.newpage-link a:hover {
-  text-decoration: underline;
-  cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
-}
-
