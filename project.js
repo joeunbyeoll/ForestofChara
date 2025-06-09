@@ -92,69 +92,93 @@ window.addEventListener('DOMContentLoaded', () => {
       circle.style.width = `${size}px`;
       circle.style.height = `${size}px`;
 
-      circle.addEventListener('click', () => {
-        circle.remove();
+      // 마지막 노란 원에만 "click me" 텍스트 생성
+      if (yellowIndex === yellowPositions.length - 1) {
+        const linkText = document.createElement('div');
+        linkText.textContent = 'Click me!';
+        Object.assign(linkText.style, {
+          position: 'absolute',
+          left: `${pos.x + size / 2}px`,
+          top: `${pos.y - 10}px`,
+          transform: 'translate(-50%, -100%)',
+          fontFamily: 'AlefB',
+          fontSize: '16px',
+          color: 'yellow',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          zIndex: '2001',
+        });
+        container.appendChild(linkText);
 
-        const img = document.createElement('img');
-        img.src = pos.image;
+        circle.addEventListener('click', () => {
+          circle.remove();
+          linkText.remove();
 
-        img.style.position = 'absolute';
-        img.style.left = `${pos.x + size / 2}px`;
-        img.style.top = `${pos.y + size / 2}px`;
-        img.style.transform = 'translate(-50%, -50%)';
-        img.style.zIndex = 2000;
-        img.style.pointerEvents = 'auto';
-        img.style.transition = 'opacity 0.3s ease';
-        img.style.opacity = '0';
+          const img = document.createElement('img');
+          img.src = pos.image;
 
-        const imgWidth = pos.width || 400;
-        img.style.width = `${imgWidth}px`;
-        img.style.height = 'auto';
+          img.style.position = 'absolute';
+          img.style.left = `${pos.x + size / 2}px`;
+          img.style.top = `${pos.y + size / 2}px`;
+          img.style.transform = 'translate(-50%, -50%)';
+          img.style.zIndex = 2000;
+          img.style.pointerEvents = 'auto';
+          img.style.transition = 'opacity 0.3s ease';
+          img.style.opacity = '0';
 
-        container.appendChild(img);
- setTimeout(() => {
-  img.style.opacity = '1';
+          const imgWidth = pos.width || 400;
+          img.style.width = `${imgWidth}px`;
+          img.style.height = 'auto';
 
-  if (pos.triggerLetter) {
-    const linkText = document.createElement('div');
-    linkText.id = 'fixedLetter';
-    linkText.textContent = 'Go deeper into the forest';
+          container.appendChild(img);
 
-    Object.assign(linkText.style, {
-      position: 'absolute',
-      bottom: '45px',
-      left: '5358px',
-      fontFamily: 'AlefB',
-      fontSize: '18px',
-      color: 'black',
-      cursor: "url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto",
-      zIndex: '9999',
-      transition: 'background 0.3s ease, transform 0.3s ease'
-    });
+          setTimeout(() => {
+            img.style.opacity = '1';
 
-    linkText.addEventListener('mouseover', () => {
-      linkText.style.transform = 'scale(1.05)';
-    });
+            if (pos.triggerLetter) {
+              const linkText2 = document.createElement('div');
+              linkText2.id = 'fixedLetter';
+              linkText2.textContent = 'Go deeper into the forest';
 
-    linkText.addEventListener('mouseout', () => {
-      linkText.style.transform = 'scale(1)';
-    });
+              Object.assign(linkText2.style, {
+                position: 'absolute',
+                bottom: '45px',
+                left: '5358px',
+                fontFamily: 'AlefB',
+                fontSize: '18px',
+                color: 'black',
+                cursor: "url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto",
+                zIndex: '9999',
+                transition: 'background 0.3s ease, transform 0.3s ease'
+              });
 
-    linkText.addEventListener('click', () => {
-      window.location.href = 'forest.html'; // 경로 수정 가능
-    });
+              linkText2.addEventListener('mouseover', () => {
+                linkText2.style.transform = 'scale(1.05)';
+              });
 
-      container.appendChild(linkText); 
+              linkText2.addEventListener('mouseout', () => {
+                linkText2.style.transform = 'scale(1)';
+              });
+
+              linkText2.addEventListener('click', () => {
+                window.location.href = 'forest.html';
+              });
+
+              container.appendChild(linkText2);
+            }
+          }, 0);
+        });
+      } else {
+        // 마지막 원이 아닌 경우, 기본 클릭 이벤트만 (텍스트 없음)
+        circle.addEventListener('click', () => {
+          circle.remove();
+        });
+      }
+
+      container.appendChild(circle);
+      yellowIndex++;
+    }, 300);
   }
-}, 0);  // setTimeout 닫힘
-
-}); // circle click 이벤트 닫힘
-
-container.appendChild(circle);
-yellowIndex++;
-}, 300); // setInterval 닫힘
-
-} // 함수 닫힘
 
   function createStaticCircle() {
     if (totalCircles >= maxTotalCircles - yellowPositions.length) return;
