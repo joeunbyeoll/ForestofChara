@@ -311,6 +311,9 @@ body {
   cursor:url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
 }
 
+.send-btn:hover {
+  background-color: #d3d3d3; /* 마우스 올리면 약간 흐린 회색 */
+}
 
 .text-overlay3 {
   position: absolute;
