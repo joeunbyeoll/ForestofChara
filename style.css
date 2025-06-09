@@ -36,7 +36,6 @@ html, body {
   flex-direction: row;
   align-items: flex-start;
   white-space: nowrap;
-  margin-top: 40px;
   width: max-content;  /* 자식 요소 합산 너비만큼 */
   z-index: 10;         /* 이미지 위로 */
 }
@@ -47,6 +46,7 @@ html, body {
   height: 100vh;
 }
 .typing-box {
+  font-family: 'Alef', sans-serif;
   flex-shrink: 0;
   position: relative;
   white-space: pre-wrap;
@@ -59,10 +59,27 @@ html, body {
   user-select: none;
   z-index: 10; /* 다른 요소보다 위에 나오도록 */
 }
-#text1 { width: 40vw; margin-right: 30vw; margin-left: 5vw}
-#text2 { width: 40vw; margin-right: 60vw; }
-#text3 { width: 40vw; margin-right: 60vw; }
-#text4 { width: 60vw; margin-right: 0; }
+#text1 { 
+  width: 40vw; 
+  margin-top: 100px;
+  margin-right: 30vw; 
+  margin-left: 5vw}
+
+#text2 { 
+  width: 40vw; 
+  margin-top: 120px;
+  left: 670px; }
+
+#text3 { 
+  width: 40vw; 
+  margin-top: 500px;
+  left: 640px; }
+
+#text4 { 
+  width: 40vw; 
+  margin-top: 600px;
+  left: 1260px; }
+ }
 
 #text1s {
   font-family: 'IBM Plex Sans KR', sans-serif;
@@ -77,17 +94,7 @@ html, body {
 }
 
 
-.blink-bar {
-  display: inline-block;
-  width: 2px;
-  height: 1.3em;
-  animation: blink 1s step-start infinite;
-  vertical-align: bottom;
-  margin-left: 2px;
-  background-color: #39ff14 !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
+
 
 @keyframes blink {
   0%, 50% { opacity: 1; }
@@ -261,7 +268,7 @@ position: relative;
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: red; /* 기본 원 색상 */
+  background-color: white; /* 기본 원 색상 */
   position: absolute;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   user-select: none;
