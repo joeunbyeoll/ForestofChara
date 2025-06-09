@@ -16,7 +16,7 @@
       <div class="input-box">
         <textarea id="myTextarea" placeholder="Tell me what you want to run away from" rows="4" cols="17"></textarea>
       </div>
-     <button type="button" onclick="sendMessage()"class="send-btn">SEND</button>
+     <button type="button" onclick="sendMessage()" class="send-btn">SEND</button>
     </div>
   </div>
 
@@ -47,13 +47,12 @@
 
   <div id="container"></div>
 
-<div id="bookPopup" class="hidden">
-  <img id="bookPage" src="img/newspaper.png" alt="책 페이지" />
-  <div id="leftSide" class="clickZone"></div>
-  <div id="rightSide" class="clickZone"></div>
-  <button id="closeBookBtn">×</button>
-</div>
-
+  <div id="bookPopup" class="hidden">
+    <img id="bookPage" src="img/newspaper.png" alt="책 페이지" />
+    <div id="leftSide" class="clickZone"></div>
+    <div id="rightSide" class="clickZone"></div>
+    <button id="closeBookBtn">×</button>
+  </div>
 
   <script>
     const popups = document.querySelectorAll('.popup-container');
@@ -106,9 +105,6 @@
         circle.classList.add('yellow');
         pinkCircleGiven = true;
         circle.addEventListener('click', openBook);
-         
-      
-
       } else {
         // 나머지 원은 클릭 이벤트 없음 (팝업 열리지 않음)
       }
@@ -162,29 +158,32 @@
 
     closeBookBtn.addEventListener('click', closeBook);
 
-  function sendMessage() {
+function sendMessage() {
   const textarea = document.getElementById('myTextarea');
   const msg = textarea.value.trim();
   if (!msg) {
     alert('Please write something!');
     return;
   }
-  textarea.value = ""; // 보내기 전에 바로 지우기
+
+  textarea.value = "";  // 텍스트 바로 지우기
+  alert('Your worry has been sent somewhere in this forest!');  // 알림 띄우기
 
   fetch("https://script.google.com/macros/s/AKfycbyvtO2B8pCjT-rXUlLeoupT5IjtwyR5kbMjm8vj-Gs7vwEsqhvJOnsoY93-acPhWeC8Ug/exec", {
     method: "POST",
     body: JSON.stringify({ message: msg }),
   })
   .then(response => {
-    // 성공 알림 등은 위에 설명한 방법으로 UI에만 띄우기
+    // 성공 후 따로 처리 없어도 됨
   })
   .catch(error => {
     console.error("Error:", error);
   });
 }
 
-</script>
 
+  </script>
 
+  <div id="messageAlert" class="message-alert hidden"></div>
 </body>
 </html>
