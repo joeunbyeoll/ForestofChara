@@ -266,7 +266,19 @@ position: relative;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   user-select: none;
   transition: background-color 0.3s;
+  transition: transform 0.2s ease;
   z-index: 9999;
+}
+
+
+.circle.yellow:hover,
+.circle.black:hover {
+  transform: scale(1.4);
+}
+
+/* 빨간 원은 hover 시 크기 변화 없음 */
+.circle.red:hover {
+  transform: none !important;
 }
 
 .circle.black {
