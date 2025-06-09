@@ -137,8 +137,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid lightgray;
-    background: transparent;
+    background: lightgray;
     pointer-events: none;
   }
 
@@ -146,9 +145,8 @@ body {
   position: relative;
   width: 15px;
   height: 15px;
-  border: 2px solid black;
   border-radius: 50%;
-  background: transparent;
+  background: black;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   pointer-events: auto;
 }
@@ -175,16 +173,18 @@ body {
   position: absolute;
   width: 15px;
   height: 15px;
-  border: 3px solid yellow;
-  background-color: transparent;
+  background-color: yellow;
   border-radius: 50%;
   cursor: url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto;
   pointer-events: auto;
 }
 
-.circle.yellow:hover {
-  background-color: yellow;
+
+.circle.yellow:hover,
+.circle.black:hover {
+  transform: scale(1.4);
 }
+
 
 .circle.yellow::before {
   content: "";
