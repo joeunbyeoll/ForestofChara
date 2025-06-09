@@ -13,8 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
   enterBtn.style.pointerEvents = 'none';
 
   let blackCircleCount = 0;
-  const maxBlackCircles = 10;
-  const maxTotalCircles = 30;
+  const maxBlackCircles = 25;
+  const maxTotalCircles = 55;
 
   let totalCircles = 0;
 
@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }, 30);
 
-  function typeText(el, text, speed = 120, callback) {
+  function typeText(el, text, speed = 105, callback) {
     if (!el || el.dataset.typed === 'true') return;
     el.dataset.typed = 'true';
 
@@ -57,12 +57,16 @@ window.addEventListener('DOMContentLoaded', () => {
           el.innerHTML += text[i];
         }
         i++;
-        el.innerHTML += '<span class="blink-bar"></span>';
+        
+
+        const isSpace = text[i - 1] === " ";
+        const thisSpeed = isSpace ? speed * 0.1 : speed;
+
         setTimeout(() => {
           const blink = el.querySelector('.blink-bar');
           if (blink) blink.remove();
           type();
-        }, speed);
+        }, thisSpeed);
       } else {
         const finalText = text.replace(/\n/g, '<br>');
         el.innerHTML = finalText;
@@ -148,6 +152,9 @@ window.addEventListener('DOMContentLoaded', () => {
       circle.style.width = `${size}px`;
       circle.style.height = `${size}px`;
 
+      circle.style.pointerEvents = 'auto';
+      circle.style.zIndex = '2000';
+
       if (yellowIndex === yellowPositions.length - 1) {
         const linkText = document.createElement('div');
         linkText.textContent = 'Click me!';
@@ -193,8 +200,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const circleDiameter = 15;
     const padding = 30;
 
-    const x = padding + Math.random() * (container.scrollWidth - circleDiameter - 2 * padding);
-    const y = padding + Math.random() * (container.clientHeight - circleDiameter - 2 * padding);
+    const containerWidth = container.scrollWidth - circleDiameter - 2 * padding;
+    const containerHeight = container.clientHeight - circleDiameter - 2 * padding;
+
+    // 수정된 부분: 좌우 전체에서 균등 분포
+    const x = padding + Math.random() * containerWidth;
+    const y = padding + Math.random() * containerHeight;
 
     circle.style.position = 'absolute';
     circle.style.left = `${x}px`;
@@ -207,10 +218,16 @@ window.addEventListener('DOMContentLoaded', () => {
     if (shouldBeBlack) {
       circle.classList.add('black');
       blackCircleCount++;
+      circle.style.pointerEvents = 'auto';
+      circle.style.zIndex = '2000';
+
       circle.addEventListener('click', () => {
         circle.remove();
         blackCircleCount--;
       });
+    } else {
+      circle.style.pointerEvents = 'none';
+      circle.style.zIndex = '1000';
     }
 
     container.appendChild(circle);
@@ -233,7 +250,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     typeText(
       document.getElementById("text1"),
-      "Hello, \nthis is the Forest of Chara\n— a quiet corner somewhere on Earth.",
+      "Hello, \nthis                   is      the\n          Forest    of   Chara,\n a\n      quiet\n                corner\n somewhere   on   Earth.",
       100,
       () => {
         typeText(
@@ -248,16 +265,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const scrollTexts = [
       {
         id: 'text2',
-        text: "Many lizards live in this forest. To survive, they often rely on a behavior called 'Autotomy'. Have you heard of autotomy? It’s when a lizard detaches part of its body to escape danger."
+        text: "Many lizards live in this forest.\nTo    survive,    they    often\nrely   on   a   behavior\n        called\n'Autotomy'. \nHave  you  heard  of  autotomy?\nIt’s when a lizard detaches part of \ni t s   b o d y   t o  e s c a p e   d a n g e r."
       },
       {
         id: 'text3',
-        text: "They bend their bodies and renew themselves to keep living. There are times in life when we all want to run away because we live an endlessly busy life."
+        text: "They bend their bodies and \nrenew  t h e m s e l v e s\n     to\n       keep\n        living.\nThere are times in life\nwhen we  all  want  to  run  away\nbecause  we  live  an  endlessly  busy  life."
       },
       {
         id: 'text4',
-        text: "How did you end up here? And do you feel like running away now? Here in this place, your autotomy is not a weakness, but the courage to move forward............"
-      }
+        text: "How  did  you  end  up  here?\n And  do  you  feel  like  running  away  now?\n  Here in this place, your autotomy is not a weakness,\n   but the courage to move forward...\n    Go deeper into the forest and let it all out."
+      },
     ];
 
     const typedMap = new Map();
@@ -292,17 +309,12 @@ window.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    if (maxScrollLeft <= 0) return;
+    const scrollAmount = 100;
 
-    const SPEED = 1.5;
-    let scrollAmount = e.deltaY * SPEED;
-
-    if (e.deltaMode === 1) scrollAmount *= 16;
-    else if (e.deltaMode === 2) scrollAmount *= container.clientHeight;
-
-    container.scrollLeft = Math.min(
-      maxScrollLeft,
-      Math.max(0, container.scrollLeft + scrollAmount)
-    );
+    if (e.deltaY > 0) {
+      container.scrollLeft = Math.min(container.scrollLeft + scrollAmount, maxScrollLeft);
+    } else {
+      container.scrollLeft = Math.max(container.scrollLeft - scrollAmount, 0);
+    }
   }, { passive: false });
 });
