@@ -5,6 +5,17 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadingOverlay = document.getElementById('loadingOverlay');
   const popups = document.querySelectorAll('.popup-container');
 
+const designWidth = 1920;
+const designHeight = 1080;
+
+function pxToVw(px) {
+  return (px / designWidth) * 100 + 'vw';
+}
+
+function pxToVh(px) {
+  return (px / designHeight) * 100 + 'vh';
+}
+
   let percent = 0;
   const minOpacity = 0.43;
 
@@ -57,7 +68,6 @@ window.addEventListener('DOMContentLoaded', () => {
           el.innerHTML += text[i];
         }
         i++;
-        
 
         const isSpace = text[i - 1] === " ";
         const thisSpeed = isSpace ? speed * 0.1 : speed;
@@ -105,10 +115,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         Object.assign(linkText2.style, {
           position: 'absolute',
-          bottom: '45px',
-          left: '5358px',
+          bottom: '5vh',
+          left: '355vw',
           fontFamily: 'AlefB',
-          fontSize: '18px',
+          fontSize: '1.125vw',
           color: 'black',
           cursor: "url('https://joeunbyeoll.github.io/ForestofChara/img/cursorr.png'), auto",
           zIndex: '9999',
@@ -307,14 +317,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   container.addEventListener('wheel', (e) => {
     e.preventDefault();
-
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    const scrollAmount = 100;
-
-    if (e.deltaY > 0) {
-      container.scrollLeft = Math.min(container.scrollLeft + scrollAmount, maxScrollLeft);
-    } else {
-      container.scrollLeft = Math.max(container.scrollLeft - scrollAmount, 0);
-    }
+    container.scrollLeft += e.deltaY;
   }, { passive: false });
 });
